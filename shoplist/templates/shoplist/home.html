@@ -1,0 +1,23 @@
+{% extends "shoplist/base.html" %}
+
+{% block content %}
+<h1>Твои пространства</h1>
+
+<ul>
+    {% for space in spaces %}
+        <li>
+            <strong>{{ space.name }}</strong>
+            <div id="shoplist-{{ space.id }}">
+                <!-- сюда будут подгружаться списки через HTMX -->
+            </div>
+            <button hx-get="{% url 'shoplist:shoppinglist_list' space.id %}" 
+                    hx-target="#shoplist-{{ space.id }}"
+                    hx-swap="innerHTML">
+                Показать списки
+            </button>
+        </li>
+    {% empty %}
+        <li>У вас пока нет пространств.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

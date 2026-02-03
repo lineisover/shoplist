@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ShopList</title>
+    <link rel="stylesheet" href="{% static 'shoplist/style.css' %}">
+    <script src="https://unpkg.com/htmx.org@1.9.3"></script>
+</head>
+<body>
+    {% if request.user.is_authenticated %}
+        <p>
+            Привет, {{ request.user.nick_name }} |
+            <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Выйти</button>
+            </form>
+        </p>
+    {% else %}
+        <p><a href="{% url 'login' %}">Войти</a></p>
+    {% endif %}
+    
+    <hr>
+    
+    {% block content %}
+    {% endblock %}
+
+    <script>
+        document.body.addEventListener('htmx:configRequest', function (event) {
+            event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+            });
+    </script>
+
+</body>
+</html>

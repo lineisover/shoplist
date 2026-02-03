@@ -1,0 +1,7 @@
+<ul>
+    {% for item in items %}
+        {% include "shoplist/partials/item_li.html" %}
+    {% empty %}
+        <li>Товаров пока нет.</li>
+    {% endfor %}
+</ul>
