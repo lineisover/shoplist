@@ -1,42 +1,225 @@
-/* Базовые стили */
+/* Общие сбросы */
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
 }
 
-a {
-    text-decoration: none;
-    color: blue;
+/* Шапка */
+.header-container {
+    display: flex;
+    justify-content: flex-end; /* элементы справа */
+    align-items: center;
+    width: 90%;
+    max-width: 500px;   /* совпадает с контейнером контента */
+    margin: 20px auto 10px auto; /* сверху 20px, снизу 10px, центр по горизонтали */
+    gap: 10px;
 }
 
-a:hover {
-    text-decoration: underline;
+.logout-form {
+    display: inline;
 }
 
-button {
-    cursor: pointer;
-    margin-left: 5px;
+/* Контейнер с контентом (список) */
+.main-container {
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto; /* центрируем */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* Список и анимации */
+/* Список элементов */
 ul {
     list-style: none;
     padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
 }
 
 li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    background-color: #f1f1f1;
+    border-radius: 8px;
     transition: all 0.3s ease;
+    font-size: 1rem;
 }
 
-/* Зачёркивание текста для выполненных */
+li input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: #1a73e8;
+}
+
+/* Зачёркивание и перемещение вниз */
 li.done {
     text-decoration: line-through;
     color: gray;
-    order: 1; /* Перемещаем вниз */
+    order: 1;
+    background-color: #e0e0e0;
+    opacity: 0.8;
 }
 
 li:not(.done) {
-    order: 0; /* Активные элементы сверху */
+    order: 0;
 }
+
+.space-page {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+
+.space-page h1{
+    margin-bottom: 0px;
+}
+
+.space-info {
+    display: flex;
+    flex-direction: column; /* элементы сверху вниз */
+    gap: 6px;               /* расстояние между названием и списком пользователей */
+}
+
+.space-name {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.users-section {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.users-section-space {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 16px
+}
+
+.users-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.users-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.user-badge {
+    background-color: #e0e0e0;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+.no-users {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+/* Кнопки */
+button {
+    cursor: pointer;
+    padding: 4px 10px;
+    border: none;
+    background-color: #1a73e8;
+    color: white;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #1558b0;
+}
+
+button.delete-button {
+    cursor: pointer;
+    padding: 4px 10px;
+    border: none;
+    background-color: red !important;
+    color: white !important;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+button.delete-button:hover {
+    background-color: darkred !important;  /* можно добавить эффект наведения */
+}
+
+@media (max-width: 480px) {
+    /* Контейнеры */
+    .main-container, .header-container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    /* Список li разворачиваем вертикально */
+    li {
+        flex-direction: column; /* элементы внутри li вертикально */
+        align-items: stretch;   /* растягиваем на всю ширину */
+        padding: 12px;
+        font-size: 1rem; /* читаемый размер */
+        gap: 8px; /* расстояние между элементами */
+    }
+
+    /* Название пространства / товара */
+    li span, li .item-name {
+        width: 100%;
+        word-break: break-word; /* длинные слова переносятся */
+        display: block;
+    }
+
+    /* Чекбокс */
+    li input[type="checkbox"] {
+        width: 24px;
+        height: 24px;
+        margin-bottom: 8px;
+        flex-shrink: 0;
+    }
+
+    /* Кнопки растягиваем на всю ширину li */
+    li button {
+        width: 100%;
+        padding: 12px 0;
+        font-size: 1rem;
+        margin: 0; 
+    }
+
+    /* Кнопка удаления */
+    li button.delete-button {
+        background-color: red !important;
+        color: white !important;
+    }
+
+    li button.delete-button:hover {
+        background-color: darkred !important;
+    }
+
+    /* Форма создания пространства */
+    #new-space-block input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        margin-bottom: 8px;
+        box-sizing: border-box;
+    }
+
+    #new-space-block button {
+        width: 100%;
+        padding: 12px 0;
+        font-size: 1rem;
+    }
+}
+

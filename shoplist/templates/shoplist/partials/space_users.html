@@ -1,0 +1,10 @@
+<div class="users-section">
+    <span class="users-label">Пользователи:</span>
+    <div class="users-list">
+        {% for user in space.users.all %}
+            <div class="user-badge">{{ user.nick_name }}</div>
+        {% empty %}
+            <div class="no-users">Нет пользователей</div>
+        {% endfor %}
+    </div>
+</div>

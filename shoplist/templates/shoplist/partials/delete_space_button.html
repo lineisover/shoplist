@@ -1,0 +1,8 @@
+<button hx-delete="{% url 'shoplist:delete_space' space.id %}" 
+        hx-target="#space-{{ space.id }}" 
+        hx-swap="outerHTML" 
+        class="button delete-button"
+        hx-confirm="Вы уверены, что хотите удалить это пространство?"
+        onclick="event.stopPropagation();">
+    Удалить
+</button>

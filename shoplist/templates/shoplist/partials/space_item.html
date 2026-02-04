@@ -1,0 +1,12 @@
+<li id="space-{{ space.id }}"
+    style="display: flex; align-items: center; justify-content: space-between; cursor: pointer;"
+    onclick="window.location.href='{% url 'shoplist:shoppinglist' space.id %}'">
+    
+        <div class="space-info">
+            <strong class="space-name">{{ space.name }}</strong>
+
+            {% include "shoplist/partials/space_users.html" %}
+        </div>
+
+    {% include "shoplist/partials/delete_space_button.html" %}
+</li>
