@@ -8,8 +8,26 @@ class UserSpace(models.Model):
     users = models.ManyToManyField(User, related_name='space')
     created_at = models.DateTimeField(auto_now_add=True)
     
+    
     def __str__(self):
         return self.name
+    
+    
+    def add_user(self, email: str, by_user: User) -> tuple[bool, str]:
+        if by_user != self.owner:
+            return False, "Только владелец может добавлять пользователей"
+        
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            return False, "Пользователь не найден"
+        
+        if self.users.filter(id=user.id).exists():
+            return False, "Пользователь уже добавлен"
+        
+        self.users.add(user)
+        return True, f"{user.nick_name} добавлен"
+    
     
     def remove_user(self, user: User) -> tuple[bool, str]:
         if user == self.owner:
