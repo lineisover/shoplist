@@ -4,12 +4,21 @@ from account.models import User
 
 class UserSpace(models.Model):
     name = models.CharField(max_length=100)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owner_space')
     users = models.ManyToManyField(User, related_name='space')
     created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
         return self.name
     
+    def remove_user(self, user: User) -> tuple[bool, str]:
+        if user == self.owner:
+            return False, "Невозможно удалить владельца пространства!"
+        if self.users.filter(id=user.id).exists():
+            self.users.remove(user)
+            return True, f"{user.nick_name} удалён"
+        return False, "Пользователь не найден"
+
 class ShopList(models.Model):
     space = models.ForeignKey(UserSpace, on_delete=models.CASCADE, related_name='lists')
     name = models.CharField(max_length=100)

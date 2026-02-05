@@ -129,6 +129,75 @@ li:not(.done) {
     color: #888;
 }
 
+.user-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 6px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+.user-item .user-nick {
+    flex: 1; /* никнейм занимает оставшееся место */
+}
+
+.user-item .delete-button {
+    background-color: #e0e0e0;
+    color: red;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    font-size: 0.9rem;
+    line-height: 18px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.user-item .delete-button:hover {
+    background-color: darkred;/
+}
+
+.add-user-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* расстояние между кнопкой и формой */
+}
+
+.show-add-user-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.show-add-user-btn:hover {
+    background-color: #45a049;
+}
+
+.add-user-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.add-user-form input {
+    padding: 0.4rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.add-user-form button {
+    padding: 8px 14px;
+}
+
 /* Кнопки */
 button {
     cursor: pointer;
@@ -148,14 +217,44 @@ button.delete-button {
     cursor: pointer;
     padding: 4px 10px;
     border: none;
-    background-color: red !important;
-    color: white !important;
+    background-color: red;
+    color: white;
     border-radius: 6px;
     transition: background-color 0.2s ease;
 }
 
 button.delete-button:hover {
-    background-color: darkred !important;  /* можно добавить эффект наведения */
+    background-color: darkred;  /* можно добавить эффект наведения */
+}
+
+/* Общий кейфрейм для исчезновения */
+@keyframes fadeout {
+    from { opacity: 1; }
+    to { opacity: 0; display: none; }
+}
+
+/* Общий стиль для попапов */
+.popup-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    color: white;
+    z-index: 1000;
+
+    animation: fadeout 0.5s ease-out 3s forwards; /* общая анимация */
+}
+
+/* Ошибка */
+.error {
+    background: #f44336; /* красный */
+}
+
+/* Успех */
+.success {
+    background: #4CAF50; /* зелёный */
 }
 
 @media (max-width: 480px) {

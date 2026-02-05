@@ -1,0 +1,30 @@
+<div id="space-users-block-{{ space.id }}" class="users-section">
+    <span class="users-label">Пользователи:</span>
+
+    <div class="users-list">
+        {% for user in space.users.all %}
+            <div class="user-item">
+                <span class="user-nick">{{ user.nick_name }}</span>
+                <button 
+                    class="delete-button"
+                    hx-delete="{% url 'shoplist:remove_user_from_space' space.id user.id %}"
+                    hx-target="#space-users-block-{{ space.id }}"
+                    hx-swap="outerHTML"
+                    onclick="event.stopPropagation();">
+                    ×
+                </button>
+            </div>
+        {% empty %}
+            <div class="no-users">Нет пользователей</div>
+        {% endfor %}
+    </div>
+
+    {% if error %}
+        <div class="popup-message error">{{ error }}</div>
+    {% endif %}
+
+    {% if success %}
+        <div class="popup-message success">{{ success }}</div>
+    {% endif %}
+
+</div>

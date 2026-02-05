@@ -1,0 +1,16 @@
+<form 
+    hx-post="{% url 'shoplist:add_user_to_space' space.id %}"
+    hx-target="#space-users-block-{{ space.id }}"
+    hx-swap="outerHTML"
+    class="add-user-form"
+    onclick="event.stopPropagation();"
+>
+    <input type="email" name="email" placeholder="Email пользователя" required>
+    <button type="submit">Добавить</button>
+
+    <button 
+        type="button"
+        onclick="document.getElementById('add-user-form-container-{{ space.id }}').innerHTML = '';">
+        Отмена
+    </button>
+</form>
