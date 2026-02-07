@@ -17,6 +17,13 @@ body {
     gap: 10px;
 }
 
+.space-header {
+    display: flex;
+    justify-content: space-between; /* левая кнопка слева, правая справа */
+    align-items: center;
+    margin-bottom: 16px;
+}
+
 .logout-form {
     display: inline;
 }

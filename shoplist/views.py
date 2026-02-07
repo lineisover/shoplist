@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST, require_http_methods
 from django.template.loader import render_to_string
+from django.urls import reverse
 
 from account.models import User
 from .models import UserSpace, ShopList, Item
@@ -58,7 +59,9 @@ def new_space_form(request: HttpRequest) -> HttpResponse:
 def create_space(request: HttpRequest) -> HttpResponse:
     form = UserSpaceForm(request.POST)
     if form.is_valid():
-        space = form.save()
+        space = form.save(commit=False)
+        space.owner = request.user
+        space.save()
         # Добавляем текущего пользователя в ManyToMany
         space.users.add(request.user)
         return render(request, "shoplist/partials/space_item.html", {"space": space})
@@ -68,17 +71,18 @@ def create_space(request: HttpRequest) -> HttpResponse:
 
 @login_required
 @require_http_methods(["DELETE"])
-def delete_space(request: HttpRequest, pk: int) -> HttpResponse:
-    try:
-        space = UserSpace.objects.get(id=pk)
-        # Опционально: проверяем, что request.user является участником
-        if request.user in space.users.all():
-            space.delete()
-            return HttpResponse("")  # пустой ответ, htmx удаляет li
-        else:
-            return HttpResponse("Forbidden", status=403)
-    except UserSpace.DoesNotExist:
-        return HttpResponse("Not found", status=404)
+def delete_space(request: HttpRequest, space_id: int) -> HttpResponse:
+    space = UserSpace.objects.get(id=space_id)
+    # Опционально: проверяем, что request.user является участником
+    if request.user != space.owner:
+        return HttpResponse(status=403)
+    
+    space.delete()
+    
+    if request.headers.get("HX-Request"):
+        return HttpResponse(status=204, headers={"HX-Redirect": reverse("home")})
+    
+    return HttpResponse("")
 
 
 @login_required
