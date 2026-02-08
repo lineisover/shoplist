@@ -139,18 +139,29 @@ def show_add_list_form(request: HttpRequest, space_id: int) -> HttpResponse:
     space = get_object_or_404(UserSpace, id=space_id)
     return render(request, "shoplist/partials/add_list_form.html", {"space": space})
 
+
 @login_required
 def show_add_list_button(request: HttpRequest, space_id: int) -> HttpResponse:
     space = get_object_or_404(UserSpace, id=space_id)
     return render(request, "shoplist/partials/add_list.html", {"space": space})
 
+
 @login_required
 @require_POST
 def create_list(request: HttpRequest, space_id: int) -> HttpResponse:
-    if request.method == "POST":
-        name = request.POST.get("list_name")
-        space = get_object_or_404(UserSpace, id=space_id)
-        if name and space:
-            ShopList.objects.create(name=name, space=space)
+    name = request.POST.get("list_name")
+    space = get_object_or_404(UserSpace, id=space_id)
+    
+    success, message = space.create_list(name)
+    
     shoppinglists = ShopList.objects.filter(space=space)
-    return render(request, "shoplist/partials/shoppinglists_container.html", {"shoppinglists": shoppinglists, "space": space})
+    return render(
+        request,
+        "shoplist/partials/shoppinglists_container.html",
+        {
+            "shoppinglists": shoppinglists,
+            "space": space,
+            'error': message if not success else None,
+            'success': message if success else None
+        }
+    )

@@ -37,6 +37,17 @@ class UserSpace(models.Model):
             self.users.remove(user)
             return True, f"{user.nick_name} удалён"
         return False, "Пользователь не найден"
+    
+    
+    def create_list(self, name: str) -> tuple[bool, str]:
+        if not name:
+            return False, "Название списка не может быть пустым"
+        
+        ShopList.objects.create(
+            name=name,
+            space=self
+        )
+        return True, f"Список {name} создан"
 
 
 class ShopList(models.Model):
@@ -46,7 +57,7 @@ class ShopList(models.Model):
     
     def __str__(self):
         return f'{self.name} ({self.space.name})'
-    
+   
     
 class Item(models.Model):
     shopping_list = models.ForeignKey(ShopList, on_delete=models.CASCADE, related_name='items')

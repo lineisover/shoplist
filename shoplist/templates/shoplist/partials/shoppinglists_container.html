@@ -1,7 +1,15 @@
 <div id="shoppinglists-container">
 
-        {% include "shoplist/partials/shoppinglists.html" %}
-        
-        {% include "shoplist/partials/add_list.html" %}
+    {% include "shoplist/partials/shoppinglists.html" %}
+    
+    {% include "shoplist/partials/add_list.html" %}
 
-    </div>
+    {% if error %}
+        <div class="popup-message error">{{ error }}</div>
+    {% endif %}
+    
+    {% if success %}
+        <div class="popup-message success">{{ success }}</div>
+    {% endif %}
+
+</div>
