@@ -1,0 +1,8 @@
+<div id="add-list-container">
+    <button 
+        hx-get="{% url 'shoplist:show_add_list_form' space.id %}"
+        hx-target="#add-list-container" 
+        hx-swap="outerHTML">
+        Добавить список
+    </button>
+</div>

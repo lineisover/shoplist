@@ -44,7 +44,6 @@ def toggle_item(request: HttpRequest, pk: int) -> HttpResponse:
         item.done = not item.done
         item.save()
 
-    # Возвращаем только один элемент списка (частичный шаблон)
     return render(request, "shoplist/partials/item_li.html", {"item": item})
 
 
@@ -73,7 +72,7 @@ def create_space(request: HttpRequest) -> HttpResponse:
 @require_http_methods(["DELETE"])
 def delete_space(request: HttpRequest, space_id: int) -> HttpResponse:
     space = UserSpace.objects.get(id=space_id)
-    # Опционально: проверяем, что request.user является участником
+
     if request.user != space.owner:
         return HttpResponse(status=403)
     
@@ -133,3 +132,25 @@ def remove_user_from_space(request: HttpRequest, space_id: int, user_id: int) ->
     # Нужно убедиться, но вроде как он тут и не нужен никогда
     # обычный редирект
     # return redirect('shoplist:space_detail', space_id=space.id)
+    
+    
+@login_required
+def show_add_list_form(request: HttpRequest, space_id: int) -> HttpResponse:
+    space = get_object_or_404(UserSpace, id=space_id)
+    return render(request, "shoplist/partials/add_list_form.html", {"space": space})
+
+@login_required
+def show_add_list_button(request: HttpRequest, space_id: int) -> HttpResponse:
+    space = get_object_or_404(UserSpace, id=space_id)
+    return render(request, "shoplist/partials/add_list.html", {"space": space})
+
+@login_required
+@require_POST
+def create_list(request: HttpRequest, space_id: int) -> HttpResponse:
+    if request.method == "POST":
+        name = request.POST.get("list_name")
+        space = get_object_or_404(UserSpace, id=space_id)
+        if name and space:
+            ShopList.objects.create(name=name, space=space)
+    shoppinglists = ShopList.objects.filter(space=space)
+    return render(request, "shoplist/partials/shoppinglists_container.html", {"shoppinglists": shoppinglists, "space": space})

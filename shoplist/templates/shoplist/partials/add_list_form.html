@@ -1,0 +1,18 @@
+<div id="add-list-container">
+    <input type="text" name="list_name" placeholder="Название списка">
+
+    <button 
+        hx-post="{% url 'shoplist:create_list' space.id %}" 
+        hx-include="input[name='list_name']"
+        hx-target="#shoppinglists-container"
+        hx-swap="outerHTML">
+        Создать
+    </button>
+
+    <button 
+        hx-get="{% url 'shoplist:show_add_list_button' space.id %}" 
+        hx-target="#add-list-container"
+        hx-swap="outerHTML">
+        Отмена
+    </button>
+</div>

@@ -16,24 +16,8 @@
     
     {% include "shoplist/partials/space_users.html" %}
 
-
-    <div>
-        <ul>
-            {% for sl in shoppinglists %}
-                <li>
-                    {{ sl.name }}
-                    <div id="items-{{ sl.id }}"></div>
-                    <button hx-get="{% url 'shoplist:item_list' sl.id %}" 
-                            hx-target="#items-{{ sl.id }}" 
-                            hx-swap="innerHTML">
-                        Показать товары
-                    </button>
-                </li>
-            {% empty %}
-                <li>Списков пока нет.</li>
-            {% endfor %}
-        </ul>
-    </div>
+    {% include "shoplist/partials/shoppinglists_container.html" %}
+    
 </div>
 
 

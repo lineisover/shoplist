@@ -1,3 +1,4 @@
+from __future__ import annotations
 from django.db import models
 from account.models import User
 
@@ -36,6 +37,7 @@ class UserSpace(models.Model):
             self.users.remove(user)
             return True, f"{user.nick_name} удалён"
         return False, "Пользователь не найден"
+
 
 class ShopList(models.Model):
     space = models.ForeignKey(UserSpace, on_delete=models.CASCADE, related_name='lists')
