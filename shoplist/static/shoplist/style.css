@@ -24,6 +24,13 @@ body {
     margin-bottom: 16px;
 }
 
+.header-list {
+    display: flex;
+    justify-content: space-between; /* левая кнопка слева, правая справа */
+    align-items: center;
+    margin-bottom: 16px;
+}
+
 .logout-form {
     display: inline;
 }
@@ -49,7 +56,7 @@ ul {
 }
 
 li {
-    display: flex;
+    /* display: flex; */
     align-items: center;
     justify-content: space-between;
     padding: 12px 15px;
@@ -179,7 +186,7 @@ li:not(.done) {
     background-color: #4CAF50;
     color: white;
     border: none;
-    padding: 0.5rem 1rem;
+    /* padding: 0.5rem 1rem; */
     border-radius: 6px;
     cursor: pointer;
     width: fit-content;

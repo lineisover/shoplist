@@ -14,6 +14,7 @@ urlpatterns = [
     path("space/<int:space_id>/show_add_list_form/", views.show_add_list_form, name='show_add_list_form'),
     path("space/<int:space_id>/create_list/", views.create_list, name='create_list'),
     path('list/<int:list_id>/items/', views.item_list, name='item_list'),
+    path('list/<int:list_id>/items/add/', views.add_item, name='add_item'),
     path('item/<int:pk>/toggle/', views.toggle_item, name='toggle_item'),
     path('new_space_form/', views.new_space_form, name='new_space_form'),
 ]

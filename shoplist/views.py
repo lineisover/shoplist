@@ -32,7 +32,14 @@ def item_list(request: HttpRequest, list_id: int) -> HttpResponse:
     """Возвращает все товары в указанном списке (partial для HTMX)"""
     shopping_list = get_object_or_404(ShopList, id=list_id)
     items = shopping_list.items.all()
-    return render(request, "shoplist/item_list.html", {"items": items})
+    return render(
+        request,
+        "shoplist/item_list.html",
+        {
+            "items": items,
+            "list": shopping_list
+        }
+    )
 
 
 @login_required
@@ -40,9 +47,8 @@ def item_list(request: HttpRequest, list_id: int) -> HttpResponse:
 def toggle_item(request: HttpRequest, pk: int) -> HttpResponse:
     item = get_object_or_404(Item, pk=pk)
     
-    if request.method == "POST":
-        item.done = not item.done
-        item.save()
+    item.done = not item.done
+    item.save()
 
     return render(request, "shoplist/partials/item_li.html", {"item": item})
 
@@ -161,6 +167,28 @@ def create_list(request: HttpRequest, space_id: int) -> HttpResponse:
         {
             "shoppinglists": shoppinglists,
             "space": space,
+            'error': message if not success else None,
+            'success': message if success else None
+        }
+    )
+    
+    
+@login_required
+@require_POST
+def add_item(request: HttpRequest, list_id: int) -> HttpResponse:
+    shopping_list = get_object_or_404(ShopList, id=list_id)
+    name = request.POST.get("item_name")
+
+    success, message = shopping_list.add_item(name)
+
+    items = shopping_list.items.all()
+    
+    return render(
+        request,
+        "shoplist/partials/lists/items_list.html",
+        {
+            "items": items,
+            "list": shopping_list,
             'error': message if not success else None,
             'success': message if success else None
         }

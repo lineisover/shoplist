@@ -57,6 +57,17 @@ class ShopList(models.Model):
     
     def __str__(self):
         return f'{self.name} ({self.space.name})'
+    
+    def add_item(self, item_name: str):
+        if not item_name:
+            return False, "Пункт не может быть пустым"
+        
+        Item.objects.create(
+            shopping_list = self,
+            name = item_name,
+            done = False
+        )
+        return True, f"Пункт {item_name} создан"
    
     
 class Item(models.Model):
