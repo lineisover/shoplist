@@ -50,6 +50,16 @@ class UserSpace(models.Model):
         return True, f"Список {name} создан"
 
 
+    def delete_list(self, sl: ShopList, user: User):
+        if sl.space != self:
+            return False, "Список не принадлежит этому пространству"
+        if user not in self.users.all():
+            return False, "Только пользователи пространства могут удалить список"
+        
+        sl.delete()
+        return True, f"{sl.name} удален"
+
+
 class ShopList(models.Model):
     space = models.ForeignKey(UserSpace, on_delete=models.CASCADE, related_name='lists')
     name = models.CharField(max_length=100)

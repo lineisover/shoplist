@@ -31,6 +31,12 @@ body {
     margin-bottom: 16px;
 }
 
+.header-buttons {
+    display: flex;
+    flex-direction: column; /* кнопки в колонку */
+    gap: 8px; /* расстояние между кнопками */
+}
+
 .logout-form {
     display: inline;
 }

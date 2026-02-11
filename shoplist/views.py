@@ -203,7 +203,30 @@ def add_item(request: HttpRequest, list_id: int) -> HttpResponse:
         "shoplist/partials/lists/items_list.html",
         {
             "items": items,
-            "list": shopping_list,
+            "sl": shopping_list,
+            'error': message if not success else None,
+            'success': message if success else None
+        }
+    )
+    
+    
+@login_required
+@require_http_methods(["DELETE"])
+def delete_list(request: HttpRequest, list_id: int) -> HttpResponse:
+    shopping_list = get_object_or_404(ShopList, id=list_id)
+    space = shopping_list.space
+    user = request.user
+
+    success, message = space.delete_list(shopping_list, user)
+
+    shoppinglists = space.lists.all()
+    
+    return render(
+        request,
+        "shoplist/partials/shoppinglists_container.html",
+        {
+            "shoppinglists": shoppinglists,
+            "space": space,
             'error': message if not success else None,
             'success': message if success else None
         }
