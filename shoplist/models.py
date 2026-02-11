@@ -78,6 +78,13 @@ class ShopList(models.Model):
             done = False
         )
         return True, f"Пункт {item_name} создан"
+    
+    def remove_item(self, item: Item):
+        if item.shopping_list != self:
+            return False, "Этот пункт не принадлежит списку"
+    
+        item.delete()
+        return True, "Пункт удалён"
    
     
 class Item(models.Model):

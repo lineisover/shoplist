@@ -1,9 +1,26 @@
 <li id="item-{{ item.id }}" class="{% if item.done %}done{% endif %}">
-    <input type="checkbox"
-           {% if item.done %}checked{% endif %}
-           hx-post="{% url 'shoplist:toggle_item' item.id %}"
-           hx-trigger="change"
-           hx-target="#item-{{ item.id }}"
-           hx-swap="outerHTML">
-    {{ item.name }}
+    <div class="item-row">
+        <div class="item-content">
+            <input type="checkbox"
+                   {% if item.done %}checked{% endif %}
+                   hx-post="{% url 'shoplist:toggle_item' item.id %}"
+                   hx-trigger="change"
+                   hx-target="#item-{{ item.id }}"
+                   hx-swap="outerHTML">
+
+            <span>
+                {{ item.name }}
+            </span>
+        </div>
+
+        <div class="item-buttons">
+            <button 
+                class="delete-button"
+                hx-delete="{% url 'shoplist:delete_item' sl.id item.id %}"
+                hx-target="#items-list-{{ sl.id }}"
+                hx-swap="outerHTML">
+                ×
+            </button>
+        </div>
+    </div>
 </li>

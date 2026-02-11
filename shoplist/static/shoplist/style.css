@@ -62,10 +62,9 @@ ul {
 }
 
 li {
-    /* display: flex; */
     align-items: center;
     justify-content: space-between;
-    padding: 12px 15px;
+    padding: 6px 15px;
     margin-bottom: 10px;
     background-color: #f1f1f1;
     border-radius: 8px;
@@ -216,6 +215,50 @@ li:not(.done) {
 
 .add-user-form button {
     padding: 8px 14px;
+}
+
+.item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.items-list li:hover {
+    background-color: #e0e0e0;
+    border-radius: 8px;
+}
+
+/* Левая часть */
+.item-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Правая часть */
+.item-buttons {
+    display: flex;
+    flex-direction: column;   /* В колонку */
+    gap: 6px;
+}
+
+.item-row .delete-button {
+    background-color: #e0e0e0;
+    color: red;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    font-size: 0.9rem;
+    line-height: 18px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.item-row .delete-button:hover {
+    background-color: darkred;/
 }
 
 /* Кнопки */

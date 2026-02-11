@@ -2,6 +2,7 @@
     hx-delete="{% url 'shoplist:delete_list' sl.id %}"
     hx-target="#shoppinglists-container"
     class="button delete-button"
+    hx-confirm="Вы уверены, что хотите удалить этот список?"
     hx-swap="outerHTML">
     Удалить
 </button>

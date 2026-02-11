@@ -61,11 +61,12 @@ def hide_item_list(request: HttpRequest, list_id: int) -> HttpResponse:
 @require_POST
 def toggle_item(request: HttpRequest, pk: int) -> HttpResponse:
     item = get_object_or_404(Item, pk=pk)
+    sl = item.shopping_list
     
     item.done = not item.done
     item.save()
 
-    return render(request, "shoplist/partials/item_li.html", {"item": item})
+    return render(request, "shoplist/partials/item_li.html", {"item": item, 'sl': sl})
 
 
 @login_required
@@ -149,10 +150,6 @@ def remove_user_from_space(request: HttpRequest, space_id: int, user_id: int) ->
             request=request
         )
         return HttpResponse(html)
-
-    # Нужно убедиться, но вроде как он тут и не нужен никогда
-    # обычный редирект
-    # return redirect('shoplist:space_detail', space_id=space.id)
     
     
 @login_required
@@ -227,6 +224,28 @@ def delete_list(request: HttpRequest, list_id: int) -> HttpResponse:
         {
             "shoppinglists": shoppinglists,
             "space": space,
+            'error': message if not success else None,
+            'success': message if success else None
+        }
+    )
+    
+
+@login_required
+@require_http_methods(["DELETE"])
+def delete_item(request: HttpRequest, list_id: int, item_id: int) -> HttpResponse:
+    shopping_list = get_object_or_404(ShopList, id=list_id)
+    item = get_object_or_404(Item, id=item_id)
+
+    success, message = shopping_list.remove_item(item)
+
+    items = shopping_list.items.all()
+    
+    return render(
+        request,
+        "shoplist/partials/lists/items_list.html",
+        {
+            "items": items,
+            "sl": shopping_list,
             'error': message if not success else None,
             'success': message if success else None
         }
