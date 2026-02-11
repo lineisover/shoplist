@@ -1,0 +1,7 @@
+<div id="show-hide-shoplist">
+    <button hx-get="{% url 'shoplist:item_list' sl.id %}" 
+            hx-target="#shoplist-{{ sl.id }}" 
+            hx-swap="outerHTML">
+        Развернуть
+    </button>
+</div>

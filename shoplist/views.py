@@ -34,10 +34,25 @@ def item_list(request: HttpRequest, list_id: int) -> HttpResponse:
     items = shopping_list.items.all()
     return render(
         request,
-        "shoplist/item_list.html",
+        "shoplist/partials/lists/expanded_list.html",
         {
             "items": items,
-            "list": shopping_list
+            "sl": shopping_list
+        }
+    )
+    
+
+@login_required
+def hide_item_list(request: HttpRequest, list_id: int) -> HttpResponse:
+    """Сворачивает список"""
+    shopping_list = get_object_or_404(ShopList, id=list_id)
+    items = shopping_list.items.all()
+    return render(
+        request,
+        "shoplist/partials/lists/collapse_list.html",
+        {
+            "items": items,
+            "sl": shopping_list
         }
     )
 

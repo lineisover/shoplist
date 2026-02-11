@@ -1,7 +1,7 @@
 <div>
-    <form id="add-item-form-{{ list.id }}"
-        hx-post="{% url 'shoplist:add_item' list.id %}"
-        hx-target="#items-list-{{ list.id }}"
+    <form id="add-item-form-{{ sl.id }}"
+        hx-post="{% url 'shoplist:add_item' sl.id %}"
+        hx-target="#items-list-{{ sl.id }}"
         hx-swap="outerHTML"
         hx-on="htmx:afterRequest: this.reset()">
         <input type="text" name="item_name" placeholder="Название">

@@ -1,0 +1,10 @@
+<li id="shoplist-{{ sl.id }}">
+    <div class="header-list">
+        <h2> {{ sl.name }} </h2>
+        
+        {% include "shoplist/partials/lists/button_hide.html" %}
+    </div>
+
+    {% include "shoplist/item_list.html" %}
+
+</li>

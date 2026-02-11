@@ -1,16 +1,8 @@
 <ul id="shoppinglists-{{ space.id }}">
     {% for sl in shoppinglists %}
-        <li>
-            <div class="header-list">
-                <h2> {{ sl.name }} </h2>
+        
+        {% include "shoplist/partials/lists/collapse_list.html" %}
 
-                {% include "shoplist/partials/lists/button_show_hide.html" %}
-            </div>
-            <div id="items-{{ sl.id }}"></div>
-
-            
-
-        </li>
     {% empty %}
         <li>Списков пока нет.</li>
     {% endfor %}
