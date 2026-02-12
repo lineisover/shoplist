@@ -1,7 +1,0 @@
-<form hx-post="{% url 'shoplist:create_space' %}" 
-      hx-target="#spaces-list" 
-      hx-swap="beforeend">
-      {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="button">Создать</button>
-</form>

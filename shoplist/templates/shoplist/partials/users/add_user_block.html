@@ -1,0 +1,11 @@
+<div class="add-user-block-{{ space.id }}">
+    <button 
+        class="show-add-user-btn"
+        hx-get="{% url 'shoplist:show_add_user_form' space.id %}"
+        hx-target=".add-user-block-{{ space.id }}"
+        hx-swap="innerHTML"
+        onclick="event.stopPropagation();">
+        Добавить
+    </button>
+    <div id="add-user-form-container-{{ space.id }}"></div>
+</div>

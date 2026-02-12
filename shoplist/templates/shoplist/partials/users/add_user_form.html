@@ -8,9 +8,9 @@
     <input type="email" name="email" placeholder="Email пользователя" required>
     <button type="submit">Добавить</button>
 
-    <button 
-        type="button"
-        onclick="document.getElementById('add-user-form-container-{{ space.id }}').innerHTML = '';">
+    <button hx-get="{% url 'shoplist:add_user_cancel' space.id %}"
+            hx-target=".add-user-block-{{ space.id }}"
+            hx-swap="innerHTML">
         Отмена
     </button>
 </form>

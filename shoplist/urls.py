@@ -5,11 +5,13 @@ app_name = "shoplist"
 
 urlpatterns = [
     path("space/create/", views.create_space, name="create_space"),
+    path("space/create_cancel/", views.create_cancel, name="new_space_button"),
     path("space/<int:space_id>/delete/", views.delete_space, name="delete_space"),
     path('space/<int:space_id>/lists/', views.shoppinglist, name='shoppinglist'),
     path("space/<int:space_id>/add-user/", views.add_user_to_space, name="add_user_to_space"),
+    path("space/<int:space_id>/add-user-cancel/", views.add_user_cancel, name="add_user_cancel"),
     path("space/<int:space_id>/add-user-form/", views.show_add_user_form, name="show_add_user_form"),
-    path("space/<int:space_id>/<int:user_id>/", views.remove_user_from_space, name="remove_user_from_space"),
+    path("space/<int:space_id>/remove-user/<int:user_id>/", views.remove_user_from_space, name="remove_user_from_space"),
     path("space/<int:space_id>/show_add_list_button/", views.show_add_list_button, name='show_add_list_button'),
     path("space/<int:space_id>/show_add_list_form/", views.show_add_list_form, name='show_add_list_form'),
     path("space/<int:space_id>/create_list/", views.create_list, name='create_list'),

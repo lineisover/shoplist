@@ -17,6 +17,9 @@
         {% empty %}
             <div class="no-users">Нет пользователей</div>
         {% endfor %}
+
+        {% include 'shoplist/partials/users/add_user_block.html' %}
+
     </div>
 
     {% if error %}

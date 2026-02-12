@@ -1,13 +1,1 @@
-{% include 'shoplist/partials/space_users_block.html' with space=space %}
-
-<div class="add-user-wrapper">
-    <button 
-        class="show-add-user-btn"
-        hx-get="{% url 'shoplist:show_add_user_form' space.id %}"
-        hx-target="#add-user-form-container-{{ space.id }}"
-        hx-swap="innerHTML"
-        onclick="event.stopPropagation();">
-        Добавить
-    </button>
-    <div id="add-user-form-container-{{ space.id }}"></div>
-</div>
+{% include 'shoplist/partials/users/space_users_block.html' with space=space %}

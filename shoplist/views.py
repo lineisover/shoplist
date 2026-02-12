@@ -72,7 +72,12 @@ def toggle_item(request: HttpRequest, pk: int) -> HttpResponse:
 @login_required
 def new_space_form(request: HttpRequest) -> HttpResponse:
     form = UserSpaceForm()
-    return render(request, "shoplist/partials/new_space_form.html", {"form": form})
+    return render(request, "shoplist/partials/space/new_space_form.html", {"form": form})
+
+
+@login_required
+def create_cancel(request: HttpRequest) -> HttpResponse:
+    return render(request, "shoplist/partials/space/new_space_block.html")
 
 
 @login_required
@@ -116,7 +121,7 @@ def add_user_to_space(request: HttpRequest, space_id: int) -> HttpResponse:
     
     return render(
         request,
-        "shoplist/partials/space_users_block.html",
+        "shoplist/partials/users/space_users_block.html",
         {
             "space": space,
             "error": message if not success else None,
@@ -128,7 +133,11 @@ def add_user_to_space(request: HttpRequest, space_id: int) -> HttpResponse:
 @login_required
 def show_add_user_form(request: HttpRequest, space_id: int) -> HttpResponse:
     space = get_object_or_404(UserSpace, id=space_id)
-    return render(request, "shoplist/partials/add_user_form.html", {"space": space})
+    return render(request, "shoplist/partials/users/add_user_form.html", {"space": space})
+
+def add_user_cancel(request: HttpRequest, space_id: int) -> HttpResponse:
+    space = get_object_or_404(UserSpace, id=space_id)
+    return render(request, "shoplist/partials/users/add_user_block.html", {"space": space})
 
 
 @login_required
@@ -141,7 +150,7 @@ def remove_user_from_space(request: HttpRequest, space_id: int, user_id: int) ->
         
     if request.headers.get('HX-Request'):
         html = render_to_string(
-            'shoplist/partials/space_users_block.html',
+            'shoplist/partials/users/space_users_block.html',
             {
                 'space': space,
                 'error': message if not success else None,

@@ -21,7 +21,6 @@ body {
     display: flex;
     justify-content: space-between; /* левая кнопка слева, правая справа */
     align-items: center;
-    margin-bottom: 16px;
 }
 
 .header-list {
@@ -97,8 +96,14 @@ li:not(.done) {
     gap: 0px;
 }
 
+.space-page-title {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
 .space-page h1{
-    margin-bottom: 0px;
+    margin-bottom: 4px;
 }
 
 .space-info {
@@ -151,6 +156,7 @@ li:not(.done) {
 .user-item {
     display: flex;
     align-items: center;
+    flex-direction: row;
     gap: 6px;
     padding: 4px 6px;
     background-color: #e0e0e0;
@@ -205,16 +211,6 @@ li:not(.done) {
     display: flex;
     gap: 0.5rem;
     margin-top: 0.5rem;
-}
-
-.add-user-form input {
-    padding: 0.4rem;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-}
-
-.add-user-form button {
-    padding: 8px 14px;
 }
 
 .item-row {

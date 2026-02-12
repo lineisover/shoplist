@@ -12,12 +12,14 @@
 </div>
 
 <div class="space-page">
-    <h1>{{ space.name }}</h1>
+    <div class="space-page-title">
+        <h1>{{ space.name }}</h1>
     
-    {% include "shoplist/partials/space_users.html" %}
+        {% include "shoplist/partials/space_users.html" %}
+
+    </div>
 
     {% include "shoplist/partials/shoppinglists_container.html" %}
-
 </div>
 
 
