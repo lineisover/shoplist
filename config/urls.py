@@ -20,8 +20,9 @@ from django.urls import path, include
 from shoplist import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),  # готовые login/logout
     path('', views.home, name='home'),  # главная страница
+    path('accounts/', include('django.contrib.auth.urls')),  # готовые login/logout
+    path('accounts/', include('account.urls')),
     path('shoplist/', include('shoplist.urls')),  # приложение shoplist
+    path('admin/', admin.site.urls),
 ]
