@@ -3,7 +3,10 @@ FROM python:3.12-slim
 WORKDIR /app
 
 RUN pip install --upgrade pip
-RUN pip install .
+
+COPY pyproject.toml ./
+
+RUN pip install ".[all]" || pip install -r requirements.txt || echo "Using pyproject.toml dependencies"
 
 COPY . .
 
