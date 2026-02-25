@@ -2,6 +2,7 @@ x-common: &common
   restart: 'always'
   env_file:
     - .env
+    - .env.local
   networks:
     - shoplist_network
 
