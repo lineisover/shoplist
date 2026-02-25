@@ -29,7 +29,7 @@
 ### Клонирование репозитория
 
 ```bash
-git clone https://github.com/your_username/shoplist.git
+git clone https://github.com/lineisover/shoplist
 cd shoplist
 ```
 
