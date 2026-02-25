@@ -20,8 +20,11 @@ env = environ.Env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-environ.Env.read_env(BASE_DIR / '.env')
+# environ.Env.read_env(BASE_DIR / '.env.local')
 
+env_file = BASE_DIR / '.env.local'
+if env_file.exists():
+    environ.Env.read_env(env_file)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/

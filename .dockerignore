@@ -1,0 +1,12 @@
+volumes/
+.helm/
+
+.git/
+.gitignore
+
+__pycache__/
+*.pyc
+*.pyo
+
+*.db
+.env.local

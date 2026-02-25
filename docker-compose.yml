@@ -1,28 +1,32 @@
+x-common: &common
+  restart: 'always'
+  env_file:
+    - .env
+  networks:
+    - shoplist_network
+
 services:
   web:
     build: .
-    container_name: shoplist_web
+    <<: *common
     ports:
       - "8000:8000"
-    volumes:
-      - static_volume:/app/static
-    env_file:
-      - .env
     depends_on:
       - db
-    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
+    command:
+      - 'sh'
+      - '-c'
+      - |
+          python manage.py migrate --noinput &&
+          gunicorn config.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - ./volumes/app:/app/static
 
   db:
     image: postgres:16
-    container_name: shoplist_db
-    restart: always
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
+    <<: *common
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - ./volumes/postgres:/var/lib/postgresql/data
 
-volumes:
-  pgdata:
-  static_volume:
+networks:
+  shoplist_network:
