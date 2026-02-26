@@ -436,10 +436,12 @@ li:not(.done) {
     .sl-h1 {
         font-size: 1.25rem;
         text-align: center;
+        align-self: baseline;
     }
 
     .sl-h2 {
         font-size: 1.1rem;
+        align-self: baseline;
     }
 
     .sl-item {
