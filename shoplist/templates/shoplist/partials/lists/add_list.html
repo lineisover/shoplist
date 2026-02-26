@@ -1,10 +1,9 @@
-<div>
-    <form id="add-item-form-{{ sl.id }}"
-        hx-post="{% url 'shoplist:add_item' sl.id %}"
-        hx-target="#items-list-{{ sl.id }}"
-        hx-swap="outerHTML"
-        hx-on="htmx:afterRequest: this.reset()">
-        <input type="text" name="item_name" placeholder="Название">
-        <button type="submit">Добавить</button>
-    </form>
-</div>
+<form class="sl-form"
+    id="add-item-form-{{ sl.id }}"
+    hx-post="{% url 'shoplist:add_item' sl.id %}"
+    hx-target="#items-list-{{ sl.id }}"
+    hx-swap="outerHTML"
+    hx-on="htmx:afterRequest: this.reset()">
+    <input class="sl-input" type="text" name="item_name" placeholder="Название">
+    <button class="sl-button" type="submit">Добавить</button>
+</form>

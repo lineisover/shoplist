@@ -1,15 +1,10 @@
-<div id="shoppinglists-container">
-
+<div class="sl-lists" id="shoppinglists-container">
     {% include "shoplist/partials/shoppinglists.html" %}
-    
     {% include "shoplist/partials/add_list.html" %}
-
     {% if error %}
-        <div class="popup-message error">{{ error }}</div>
+        <div class="sl-popup-message sl-popup-error">{{ error }}</div>
     {% endif %}
-    
     {% if success %}
-        <div class="popup-message success">{{ success }}</div>
+        <div class="sl-popup-message sl-popup-success">{{ success }}</div>
     {% endif %}
-
 </div>

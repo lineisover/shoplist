@@ -1,26 +1,22 @@
-<li id="item-{{ item.id }}" class="{% if item.done %}done{% endif %}">
-    <div class="item-row">
-        <div class="item-content">
-            <input type="checkbox"
-                   {% if item.done %}checked{% endif %}
-                   hx-post="{% url 'shoplist:toggle_item' item.id %}"
-                   hx-trigger="change"
-                   hx-target="#item-{{ item.id }}"
-                   hx-swap="outerHTML">
-
-            <span>
-                {{ item.name }}
-            </span>
-        </div>
-
-        <div class="item-buttons">
-            <button 
-                class="delete-button"
-                hx-delete="{% url 'shoplist:delete_item' sl.id item.id %}"
-                hx-target="#items-list-{{ sl.id }}"
-                hx-swap="outerHTML">
-                ×
-            </button>
-        </div>
+<div class="sl-item" id="item-{{ item.id }}" class="{% if item.done %}done{% endif %}">
+    <div class="sl-item-content">
+        <input class="sl-checkbox"
+            type="checkbox"
+            {% if item.done %}checked{% endif %}
+            hx-post="{% url 'shoplist:toggle_item' item.id %}"
+            hx-trigger="change"
+            hx-target="#item-{{ item.id }}"
+            hx-swap="outerHTML"
+        >
+        {{ item.name }}
     </div>
-</li>
+
+    <div class=".sl-item-buttons">
+        <button class="sl-button-delete"
+            hx-delete="{% url 'shoplist:delete_item' sl.id item.id %}"
+            hx-target="#items-list-{{ sl.id }}"
+            hx-swap="outerHTML">
+            x
+        </button>
+    </div>
+</div>

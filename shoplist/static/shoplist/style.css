@@ -2,7 +2,7 @@
 :root {
     /* Основной фиолетовый тон */
     --primary-color: #9b59b6;      /* насыщенный лиловый */
-    --primary-light: #f4f3f5;      /* светлый лавандовый для фонов */
+    --primary-light: #eeddff;      /* светлый лавандовый для фонов */
     --primary-dark: #6c3483;       /* темный фиолетовый для акцентов и hover */
     
     /* Glassmorphism элементы */
@@ -33,7 +33,7 @@ body {
 }
 
 /* Шапка */
-.header-container {
+.sl-header {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -43,8 +43,8 @@ body {
     gap: 12px;
 }
 
-/* Контейнер с контентом (Glassmorphism) */
-.main-container {
+/* Контейнер с контентом */
+.sl-main {
     width: 90%;
     max-width: 500px;
     margin: 0 auto 40px auto;
@@ -59,89 +59,15 @@ body {
     box-shadow: var(--shadow);
 }
 
-.item-row {
-    display: flex;
-    width: 100%;
-}
-
-.item-content {
-    display: flex;
-    flex: auto;
-    align-self: center;
-    align-items: center;
-}
-
-p {
-    margin-block: 4px;
-    display: flex;
-    flex-flow: column;
-}
-
-/* Заголовки */
-h1 {
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: var(--primary-dark);
-    margin: 0 0 16px 0;
-}
-
-h2 {
-    font-size: 1.25rem;
-    font-weight: 500;
-    margin: 0 0 8px 0;
-}
-
-/* Список элементов */
-ul {
-    list-style: none;
-    align-items: flex-start;
-    padding: 0;
-    margin-block: 8px;
+/* Форма */
+.sl-form {
     display: flex;
     flex-direction: column;
-}
-
-li {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 12px 16px;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgb(127 127 127 / 30%);
-    border-radius: 16px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    width: -webkit-fill-available;
-    margin-block: 8px;
-}
-
-li:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-}
-
-/* Состояние "Выполнено" */
-li.done {
-    text-decoration: line-through;
-    color: var(--text-secondary);
-    opacity: 0.7;
-    background: rgba(0, 0, 0, 0.02);
-    order: 1; /* Уходит вниз */
-}
-
-li:not(.done) {
-    order: 0;
-}
-
-/* Чекбоксы в стиле Material */
-input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    accent-color: var(--primary-color);
-    cursor: pointer;
+    flex-wrap: nowrap;
 }
 
 /* Кнопки */
-button {
+.sl-button {
     font-family: inherit;
     font-weight: 500;
     margin-inline-end: 8px;
@@ -155,112 +81,190 @@ button {
     transition: all 0.2s ease;
     box-shadow: 0 2px 4px rgba(26, 115, 232, 0.2);
 }
-
-button:hover {
+.sl-button:hover {
     background-color: var(--primary-dark);
     box-shadow: 0 4px 8px rgba(26, 115, 232, 0.3);
 }
-
-span {
-    margin-left: 4px;
-}
-
-.space-page {
-    padding: 8px;
-}
-
-.space-header {
-    display: flex;
-    place-content: flex-end;
-}
-
-.space-info {
-    display: flex;
-    flex-direction: column;
-    align-self: flex-start;
-}
-/* Кнопка удаления (второстепенная, но заметная при наведении) */
-.delete-button {
+/* Кнопка удаления */
+.sl-button-delete {
     background-color: transparent;
     color: var(--error-color);
     border: 1px solid transparent;
     box-shadow: none;
 }
-
-.delete-button:hover {
+.sl-button-delete:hover {
     background-color: rgba(217, 48, 37, 0.1);
     color: var(--error-color);
     box-shadow: none;
 }
 
-/* Бейджи пользователей */
-.user-badge, .user-item {
+/* Заголовки */
+.sl-h1 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--primary-dark);
+    margin: 0 0 16px 0;
+}
+.sl-h2 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin: 0 0 8px 0;
+}
+
+.sl-paragraph {
+    margin-block: 4px;
+    display: flex;
+    flex-flow: column;
+}
+
+.sl-li {
+    align-items: flex-start;
+    padding: 0;
+    margin-block: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sl-block:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+.sl-block.done {
+    text-decoration: line-through;
+    color: var(--text-secondary);
+    opacity: 0.7;
+    background: rgba(0, 0, 0, 0.02);
+    order: 1;
+}
+.sl-block:not(.done) {
+    order: 0;
+}
+
+/* Инпуты */
+.sl-input {
+    display: flex;
+    margin-block-start: 8px;
+}
+.sl-input-text {
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid #dadce0;
+    background: rgba(255, 255, 255, 0.8);
+    transition: border-color 0.2s;
+    outline: none;
+}
+.sl-input-text:focus {
+    border-color: var(--primary-color);
+    background: #fff;
+}
+input[type="email"], input[type="password"], input[type="text"] {
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid #dadce0;
+    background: rgba(255, 255, 255, 0.8);
+    transition: border-color 0.2s;
+    outline: none;
+    display: flex;
+    width: -webkit-fill-available;
+}
+
+.sl-checkbox {
+    display: flex;
+    margin-block-start: 8px;
+    width: 20px;
+    height: 20px;
+    accent-color: var(--primary-color);
+    cursor: pointer;
+}
+
+
+/* ====================== ПРОСТРАНСТВА со списками ====================== */
+/* Заголовок пространства */
+.sl-space-header {
+    display: flex;
+    place-content: flex-end;
+}
+.sl-space-main {
+    padding: 8px;
+}
+/* Пространство */
+.sl-space {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgb(127 127 127 / 30%);
+    border-radius: 16px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: -webkit-fill-available;
+    margin-block: 8px;
+}
+.sl-space-info {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+}
+.sl-space-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+/* пользователи пространства */
+.sl-users {
+    display: flex;
+    flex-direction: column;
+}
+.sl-users-list {
+    display: flex;
+    flex-direction: row;
+}
+.sl-user-badge {
     background: var(--primary-light);
     color: var(--primary-dark);
-    padding: 2px 0px 2px 16px;
+    padding: 2px 16px;
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 500;
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    margin-block: 2px 6px;
+    margin: 8px 18px 8px 0;
 }
 
-.users-section {
+
+/* ====================== СПИСКИ внутри пространства ====================== */
+
+.sl-lists {
+    display: flex;
+    flex-direction: column;
+}
+.sl-list {
     display: flex;
     flex-direction: column;
 }
 
-/* Поля ввода */
-
-input {
+.sl-item {
     display: flex;
-    margin-block-start: 8px;
+    flex-direction: row;
+    width: 100%;
 }
-
-input[type="text"] {
-    padding: 12px 16px;
-    border-radius: 12px;
-    border: 1px solid #dadce0;
-    background: rgba(255, 255, 255, 0.8);
-    transition: border-color 0.2s;
-    outline: none;
-}
-
-input[type="text"]:focus {
-    border-color: var(--primary-color);
-    background: #fff;
-}
-
-input[type="email"] {
-    padding: 12px 16px;
-    border-radius: 12px;
-    border: 1px solid #dadce0;
-    background: rgba(255, 255, 255, 0.8);
-    transition: border-color 0.2s;
-    outline: none;
-}
-
-input[type="password"] {
-    padding: 12px 16px;
-    border-radius: 12px;
-    border: 1px solid #dadce0;
-    background: rgba(255, 255, 255, 0.8);
-    transition: border-color 0.2s;
-    outline: none;
-}
-
-form {
+.sl-item-content {
     display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
+    flex: auto;
+    align-self: center;
+    align-items: center;
+}
+.sl-item-buttons {
+    display: flex;
+    align-self: flex-end;
 }
 
 
-
-/* Попапы (Уведомления) */
-.popup-message {
+/* Попапы */
+.sl-popup-message {
     position: fixed;
     top: 24px;
     right: 24px;
@@ -273,59 +277,13 @@ form {
     backdrop-filter: blur(8px);
     animation: slideIn 0.3s ease-out, fadeout 0.5s ease-out 3s forwards;
 }
-
+.sl-popup-error { background: rgba(217, 48, 37, 0.9); }
+.sl-popup-success { background: rgba(24, 128, 56, 0.9); }
 @keyframes slideIn {
     from { transform: translateX(100%); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
 }
-
 @keyframes fadeout {
     from { opacity: 1; }
     to { opacity: 0; visibility: hidden; }
-}
-
-.error { background: rgba(217, 48, 37, 0.9); }
-.success { background: rgba(24, 128, 56, 0.9); }
-
-/* Адаптивность для мобильных устройств */
-@media (max-width: 480px) {
-    .main-container {
-        width: 88%;
-        padding: 20px;
-        border-radius: 0; /* На мобилках часто лучше выглядит во всю ширину */
-        min-height: 100vh;
-        margin: 0;
-    }
-
-    .header-container {
-        width: 95%;
-        justify-content: center;
-    }
-
-    .header-list {
-        display: inline-flex;
-    }
-
-    li {
-        display: flex;
-        padding: 16px;
-        flex-direction: column;
-        flex-wrap: wrap;
-        gap: 12px;
-    }
-
-    button {
-        width: 100%; /* Кнопки на мобильных удобнее делать большими */
-        padding: 14px;
-    }
-    
-    .item-buttons {
-        width: 100%;
-        flex-direction: row !important;
-        gap: 8px;
-    }
-    
-    .item-buttons button {
-        flex: 1;
-    }
 }

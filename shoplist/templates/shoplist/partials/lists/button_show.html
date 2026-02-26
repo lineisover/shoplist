@@ -1,4 +1,5 @@
-<button hx-get="{% url 'shoplist:item_list' sl.id %}" 
+<button class="sl-button"
+        hx-get="{% url 'shoplist:item_list' sl.id %}" 
         hx-target="#shoplist-{{ sl.id }}" 
         hx-swap="outerHTML">
     Развернуть

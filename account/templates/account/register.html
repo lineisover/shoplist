@@ -1,14 +1,18 @@
 {% extends "shoplist/base.html" %}
 {% block content %}
-
-<h1>Регистрация</h1>
-
-<form method="post">
+<div class="sl-h1">Регистрация</div>
+<form class="sl-form" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Зарегистрироваться</button>
+    <button class="sl-button"
+        type="submit">
+            Зарегистрироваться
+    </button>
 </form>
-
-<p>Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a></p>
-
+<div class="sl-paragraph">
+    Уже есть аккаунт?
+    <a href="{% url 'login' %}">
+        Войти
+    </a>
+</div>
 {% endblock %}

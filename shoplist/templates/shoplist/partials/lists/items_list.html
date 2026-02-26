@@ -1,7 +1,5 @@
-<ul id="items-list-{{ sl.id }}" class="items-list">
-    {% for item in items %}
-        {% include "shoplist/partials/item_li.html" %}
-    {% empty %}
-        <li class="empty">Товаров пока нет.</li>
-    {% endfor %}
-</ul>
+{% for item in items %}
+    {% include "shoplist/partials/item_li.html" %}
+{% empty %}
+    Товаров пока нет
+{% endfor %}
