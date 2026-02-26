@@ -2,8 +2,8 @@
 
 {% block content %}
 
-<div class="space-header">
-    <button onclick="window.location.href='{% url 'home' %}'">
+<div class="sl-space-header">
+    <button class="sl-button" onclick="window.location.href='{% url 'home' %}'">
         ← Другое пространство
     </button>
     <div>
@@ -11,14 +11,11 @@
     </div>
 </div>
 
-<div class="space-page">
-    <div class="space-page-title">
-        <h1>{{ space.name }}</h1>
-    
-        {% include "shoplist/partials/space_users.html" %}
-
+<div class="sl-space-main">
+    <div class="sl-h1">
+        {{ space.name }}
     </div>
-
+    {% include "shoplist/partials/space_users.html" %}
     {% include "shoplist/partials/shoppinglists_container.html" %}
 </div>
 

@@ -1,383 +1,528 @@
+/* Переменные для легкой настройки цветов одной гаммы */
+:root {
+    /* Базовый тон (0-360) */
+    --h: 283;
+    
+    /* Основной цвет: насыщенный лиловый */
+    --primary-color: hsl(var(--h), 40%, 53%);
+    
+    /* Светлый лавандовый: высокая светлота, низкая насыщенность */
+    --primary-light: hsl(var(--h), 100%, 93%);
+    
+    /* Темный фиолетовый: низкая светлота */
+    --primary-dark: hsl(var(--h), 43%, 36%);
+
+    /* Glassmorphism: используем hsla для прозрачности */
+    --glass-bg: hsla(var(--h), 40%, 53%, 0.15);
+    --glass-border: hsla(var(--h), 40%, 53%, 0.3);
+
+    /* Текст */
+    --text-main: hsl(var(--h), 40%, 17%);
+    --text-secondary: hsl(var(--h), 30%, 50%);
+
+    /* Попапы */
+    --error-color: hsl(343, 70%, 50%);
+    --success-color: hsl(143, 60%, 55%);
+
+    /* Границы */
+    --border-color: hsl(var(--h), 10%, 85%);
+
+    /* Тень */
+    --shadow-color: hsla(var(--h), 40%, 30%, 0.2);
+    --shadow: 0 8px 32px 0 var(--shadow-color);
+
+    /* Borders */
+    --border-radius: 16px;
+}
+
 /* Общие сбросы */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Мягкий градиент на фоне для усиления эффекта стекла */
+    background: radial-gradient(circle at top right, #e8f0fe, #ffffff);
+    color: var(--text-main);
+    line-height: 1.5;
 }
 
 /* Шапка */
-.header-container {
+.sl-header {
     display: flex;
-    justify-content: flex-end; /* элементы справа */
+    justify-content: flex-end;
     align-items: center;
-    width: 90%;
-    max-width: 500px;   /* совпадает с контейнером контента */
-    margin: 20px auto 10px auto; /* сверху 20px, снизу 10px, центр по горизонтали */
-    gap: 10px;
-}
-
-.space-header {
-    display: flex;
-    justify-content: space-between; /* левая кнопка слева, правая справа */
-    align-items: center;
-}
-
-.header-list {
-    display: flex;
-    justify-content: space-between; /* левая кнопка слева, правая справа */
-    align-items: center;
+    width: 100vw;
+    /* gap: 12px; */
+    background: var(--glass-bg);
+    border-bottom: 1px solid var(--glass-border);
+    border-radius: var(--border-radius);
+    padding: 8px;
+    box-sizing: border-box;
     margin-bottom: 16px;
 }
 
-.header-buttons {
-    display: flex;
-    flex-direction: column; /* кнопки в колонку */
-    gap: 8px; /* расстояние между кнопками */
-}
-
-.logout-form {
-    display: inline;
-}
-
-/* Контейнер с контентом (список) */
-.main-container {
+/* Контейнер с контентом */
+.sl-main {
     width: 90%;
     max-width: 500px;
-    margin: 0 auto; /* центрируем */
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin: 0 auto 40px auto;
+    padding: 12px 28px;
+    
+    /* Эффект стекла */
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
 }
 
-/* Список элементов */
-ul {
-    list-style: none;
+/* Форма */
+.sl-form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: stretch;
+}
+.sl-item-form {
+    display: flex;
+    /* flex-wrap: nowrap; */
+    /* flex-flow: wrap; */
+    flex-direction: row;
+    /* justify-content: flex-end; */
+    flex-wrap: wrap;
+    flex-flow: column;
+}
+
+/* Кнопки */
+.sl-button {
+    font-family: inherit;
+    font-weight: 500;
+    margin-block: 4px;
+    cursor: pointer;
+    padding: 8px 16px;
+    margin: 4px;
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--primary-color);
+    color: white;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px var(--shadow);;
+    max-width: max-content;
+    align-self: baseline;
+    user-select: none;
+}
+.sl-button:hover {
+    background-color: var(--primary-dark);
+    box-shadow: 0 4px 8px var(--shadow);;
+}
+/* Кнопка удаления */
+.sl-button-delete {
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: transparent;
+    color: var(--error-color);
+    border: 1px solid transparent;
+    box-shadow: none;
+    user-select: none;
+}
+.sl-button-delete:hover {
+    background-color: rgba(217, 48, 37, 0.1);
+    color: var(--error-color);
+    box-shadow: none;
+}
+
+/* Заголовки */
+.sl-h1 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--primary-dark);
+    margin: 0 0 16px 0;
+}
+.sl-h2 {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+.sl-h3 {
+    color: var(--primary-dark);
+    font-size: 1rem;
+}
+
+.sl-paragraph {
+    margin-block: 4px;
+}
+
+p {
+    margin: 0;
     padding: 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0; 
     margin: 0;
     display: flex;
     flex-direction: column;
 }
 
 li {
-    align-items: center;
-    justify-content: space-between;
-    padding: 6px 15px;
-    margin-bottom: 10px;
-    background-color: #f1f1f1;
-    border-radius: 8px;
+    list-style-type: none;
+    padding: 0; 
+    margin: 0;
     transition: all 0.3s ease;
     font-size: 1rem;
 }
 
-li input[type="checkbox"] {
+.sl-li {
+    align-items: flex-start;
+    padding: 0;
+    margin-block: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sl-simple-block {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 12px 16px;
+    width: -webkit-fill-available;
+}
+.sl-beautiful-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    align-items: stretch;
+    margin-block: 8px;
+}
+
+.sl-row {
+    display: flex;
+    flex-direction: row;
+    /* margin-block-end: 8px; */
+}
+
+/* Инпуты */
+.sl-input {
+    display: flex;
+    margin-block-start: 8px;
+}
+.sl-input-text {
+    padding: 12px 16px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    background: rgba(255, 255, 255, 0.8);
+    transition: border-color 0.2s;
+    outline: none;
+}
+.sl-input-text:focus {
+    border-color: var(--primary-color);
+    background: #fff;
+}
+input[type="email"], input[type="password"], input[type="text"] {
+    padding: 12px 16px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    background: rgba(255, 255, 255, 0.8);
+    transition: border-color 0.2s;
+    outline: none;
+    display: flex;
+    width: -webkit-fill-available;
+    margin-block-end: 4px;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
     width: 20px;
     height: 20px;
-    accent-color: #1a73e8;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background-color: #fff;
+    cursor: pointer;
+    display: inline-grid;
+    place-content: center;
+    transition: all 0.2s ease;
+}
+input[type="checkbox"]:hover {
+    border-color: var(--primary-color);
+}
+input[type="checkbox"]:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+input[type="checkbox"]::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    background-color: white;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+
+/* ====================== ПРОСТРАНСТВА со списками ====================== */
+/* Заголовок пространства */
+.sl-space-header {
+    display: flex;
+    place-content: flex-end;
+}
+
+/* Пространство */
+.sl-space, .sl-space-main {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--glass-border);;
+    border-radius: var(--border-radius);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: -webkit-fill-available;
+    margin-block: 16px 8px;
+}
+
+.sl-space {
+    cursor: pointer;
+}
+
+.sl-space-main {
+    align-items: flex-start;
+    margin-block: 8px
+}
+
+.sl-space-main-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sl-space:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+.sl-space.done {
+    text-decoration: line-through;
+    color: var(--text-secondary);
+    opacity: 0.7;
+    background: rgba(0, 0, 0, 0.02);
+    order: 1;
+}
+.sl-space:not(.done) {
+    order: 0;
+}
+
+.sl-space-info {
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+}
+/* пользователи пространства */
+.sl-users {
+    display: flex;
+    flex-direction: column;
+}
+.sl-users-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.sl-user-badge {
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    padding: 8px 16px;
+    border-radius: var(--border-radius);
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 4px 8px 2px 0;
+}
+
+
+/* ====================== СПИСКИ внутри пространства ====================== */
+
+.sl-lists {
+    width: -webkit-fill-available;
+}
+
+.sl-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.sl-list-in-space {
+    padding: 0;
+    /* margin-block: 8px; */
+    /* display: flex; */
+    width: 100%;
+}
+
+.sl-space-items {
+    /* display: flex;
+    flex-direction: column; */
+    justify-content: space-between;
+    width: 100%;
+}
+
+.sl-item {
+    display: flex;
+    flex-direction: row;
+    /* width: 100%; */
+    background-color: var(--primary-light);
+    box-shadow: 0 2px 4px var(--shadow);;
+    border-radius: var(--border-radius);
+    padding: 2px;
+    margin: 4px;
+}
+
+.sl-item-content {
+    display: flex;
+    flex: auto;
+    align-self: center;
+    align-items: center;
+}
+.sl-item-buttons {
+    display: flex;
+    align-self: center;
 }
 
 /* Зачёркивание и перемещение вниз */
-li.done {
-    text-decoration: line-through;
-    color: gray;
-    order: 1;
-    background-color: #e0e0e0;
+.sl-item.done {
+    background-color: var(--glass-bg);
     opacity: 0.8;
+}
+
+.sl-item-text.done {
+    text-decoration: line-through;
+    color: var(--primary-color);
+}
+
+li.done {
+    order: 1;
 }
 
 li:not(.done) {
     order: 0;
 }
 
-.space-page {
+/* Попапы */
+#popup-container {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 1000;
     display: flex;
     flex-direction: column;
-    gap: 0px;
+    gap: 12px; /* Расстояние между уведомлениями */
+    pointer-events: none; /* Чтобы контейнер не мешал кликам, если он пустой */
 }
 
-.space-page-title {
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-}
-
-.space-page h1{
-    margin-bottom: 4px;
-}
-
-.space-info {
-    display: flex;
-    flex-direction: column; /* элементы сверху вниз */
-    gap: 6px;               /* расстояние между названием и списком пользователей */
-}
-
-.space-name {
-    font-size: 1.1rem;
-    font-weight: bold;
-}
-
-.users-section {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.users-section-space {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    margin-bottom: 16px
-}
-
-.users-label {
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-.users-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-}
-
-.user-badge {
-    background-color: #e0e0e0;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 0.85rem;
-}
-
-.no-users {
-    font-size: 0.85rem;
-    color: #888;
-}
-
-.user-item {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    gap: 6px;
-    padding: 4px 6px;
-    background-color: #e0e0e0;
-    border-radius: 4px;
-    font-size: 0.85rem;
-}
-
-.user-item .user-nick {
-    flex: 1; /* никнейм занимает оставшееся место */
-}
-
-.user-item .delete-button {
-    background-color: #e0e0e0;
-    color: red;
-    border: none;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    padding: 0;
-    font-size: 0.9rem;
-    line-height: 18px;
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.user-item .delete-button:hover {
-    background-color: darkred;/
-}
-
-.add-user-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem; /* расстояние между кнопкой и формой */
-}
-
-.show-add-user-btn {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    /* padding: 0.5rem 1rem; */
-    border-radius: 6px;
-    cursor: pointer;
+.sl-popup-message {
+    position: relative; /* no fixed! */
     width: fit-content;
-}
-
-.show-add-user-btn:hover {
-    background-color: #45a049;
-}
-
-.add-user-form {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-}
-
-.item-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.items-list li:hover {
-    background-color: #e0e0e0;
-    border-radius: 8px;
-}
-
-/* Левая часть */
-.item-content {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/* Правая часть */
-.item-buttons {
-    display: flex;
-    flex-direction: column;   /* В колонку */
-    gap: 6px;
-}
-
-.item-row .delete-button {
-    background-color: #e0e0e0;
-    color: red;
-    border: none;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    padding: 0;
-    font-size: 0.9rem;
-    line-height: 18px;
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.item-row .delete-button:hover {
-    background-color: darkred;/
-}
-
-/* Кнопки */
-button {
-    cursor: pointer;
-    padding: 4px 10px;
-    border: none;
-    background-color: #1a73e8;
+    margin-left: auto; /* к правому краю */
+    pointer-events: auto; /* кликабельность самим плашкам */
+    padding: 16px 24px;
+    border-radius: var(--border-radius);
     color: white;
-    border-radius: 6px;
-    transition: background-color 0.2s ease;
+    font-weight: 500;
+    z-index: 1000;
+    box-shadow: var(--shadow);;
+    backdrop-filter: blur(8px);
+    animation: slideIn 0.3s ease-out, fadeout 0.5s ease-out 3s forwards;
 }
-
-button:hover {
-    background-color: #1558b0;
+.sl-popup-error { background: var(--error-color); }
+.sl-popup-success { background: var(--success-color); }
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
 }
-
-button.delete-button {
-    cursor: pointer;
-    padding: 4px 10px;
-    border: none;
-    background-color: red;
-    color: white;
-    border-radius: 6px;
-    transition: background-color 0.2s ease;
-}
-
-button.delete-button:hover {
-    background-color: darkred;  /* можно добавить эффект наведения */
-}
-
-/* Общий кейфрейм для исчезновения */
 @keyframes fadeout {
     from { opacity: 1; }
-    to { opacity: 0; display: none; }
+    to { opacity: 0; visibility: hidden; }
 }
 
-/* Общий стиль для попапов */
-.popup-message {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 10px 15px;
-    border-radius: 5px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    color: white;
-    z-index: 1000;
-
-    animation: fadeout 0.5s ease-out 3s forwards; /* общая анимация */
-}
-
-/* Ошибка */
-.error {
-    background: #f44336; /* красный */
-}
-
-/* Успех */
-.success {
-    background: #4CAF50; /* зелёный */
-}
-
-@media (max-width: 480px) {
-    /* Контейнеры */
-    .main-container, .header-container {
+/* Медиа-запросы для мобильных устройств */
+@media (max-width: 600px) {
+    .sl-header {
         width: 95%;
-        padding: 15px;
+        margin: 16px auto 8px auto;
+        justify-content: center;
     }
 
-    /* Список li разворачиваем вертикально */
-    li {
-        flex-direction: column; /* элементы внутри li вертикально */
-        align-items: stretch;   /* растягиваем на всю ширину */
-        padding: 12px;
-        font-size: 1rem; /* читаемый размер */
-        gap: 8px; /* расстояние между элементами */
-    }
-
-    /* Название пространства / товара */
-    li span, li .item-name {
+    .sl-main {
         width: 100%;
-        word-break: break-word; /* длинные слова переносятся */
-        display: block;
-    }
-
-    /* Чекбокс */
-    li input[type="checkbox"] {
-        width: 24px;
-        height: 24px;
-        margin-bottom: 8px;
-        flex-shrink: 0;
-    }
-
-    /* Кнопки растягиваем на всю ширину li */
-    li button {
-        width: 100%;
-        padding: 12px 0;
-        font-size: 1rem;
-        margin: 0; 
-    }
-
-    /* Кнопка удаления */
-    li button.delete-button {
-        background-color: red !important;
-        color: white !important;
-    }
-
-    li button.delete-button:hover {
-        background-color: darkred !important;
-    }
-
-    /* Форма создания пространства */
-    #new-space-block input[type="text"] {
-        width: 100%;
-        padding: 10px;
-        font-size: 1rem;
-        margin-bottom: 8px;
         box-sizing: border-box;
+        padding: 16px 20px;
+        margin-bottom: 20px;
+        margin-left: 0;
+        margin-right: 0;
+        border-radius: 0;
+        min-height: 100vh;
     }
 
-    #new-space-block button {
+    .sl-h1 {
+        font-size: 1.25rem;
+        text-align: center;
+    }
+
+    .sl-h2 {
+        font-size: 1.1rem;
+    }
+
+    .sl-item {
+        flex-direction: column;
+        padding: 8px;
+    }
+
+    .sl-item-content {
         width: 100%;
-        padding: 12px 0;
-        font-size: 1rem;
+        margin-bottom: 8px;
+    }
+
+    .sl-item-buttons {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .sl-button {
+        padding: 10px 14px; /* Увеличиваем область нажатия */
+        font-size: 0.9rem;
+    }
+
+    .sl-user-badge {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
+
+    input[type="email"], 
+    input[type="password"], 
+    input[type="text"] {
+        font-size: 16px; /* Предотвращает зум на iOS при фокусе */
+        padding: 10px;
+    }
+
+    .sl-popup-message {
+        left: 20px;
+        right: 20px;
+        top: 10px;
+        text-align: center;
     }
 }
-

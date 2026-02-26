@@ -1,15 +1,17 @@
-<div>
-    <form hx-post="{% url 'shoplist:create_space' %}"
-        hx-target="#spaces-list"
-        hx-swap="beforeend">
-
-        {% csrf_token %}
-        {{ form.name }}
-        <button type="submit" class="button">Создать</button>
-        <button hx-get="{% url 'shoplist:new_space_button' %}"
-            hx-target="#new-space-block"
-            hx-swap="innerHTML">
+<form class="sl-form"
+    hx-post="{% url 'shoplist:create_space' %}"
+    hx-target="#spaces-list"
+    hx-swap="beforeend">
+    {% csrf_token %}
+    {{ form.name }}
+    <button class="sl-button"
+        type="submit">
+            Создать
+    </button>
+    <button class="sl-button sl-button-delete"
+        hx-get="{% url 'shoplist:new_space_button' %}"
+        hx-target="#new-space-block"
+        hx-swap="innerHTML">
             Отмена
-        </button>
-    </form>
-</div>
+    </button>
+</form>

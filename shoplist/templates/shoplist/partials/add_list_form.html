@@ -1,7 +1,7 @@
 <div id="add-list-container">
-    <input type="text" name="list_name" placeholder="Название списка">
+    <input class="sl-input" type="text" name="list_name" placeholder="Название списка">
 
-    <button 
+    <button class="sl-button" 
         hx-post="{% url 'shoplist:create_list' space.id %}" 
         hx-include="input[name='list_name']"
         hx-target="#shoppinglists-container"
@@ -9,7 +9,7 @@
         Создать
     </button>
 
-    <button 
+    <button class="sl-button" 
         hx-get="{% url 'shoplist:show_add_list_button' space.id %}" 
         hx-target="#add-list-container"
         hx-swap="outerHTML">
