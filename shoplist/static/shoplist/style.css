@@ -282,7 +282,6 @@ input[type="checkbox"]:checked::before {
 /* Пространство */
 .sl-space, .sl-space-main {
     align-items: center;
-    cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -293,6 +292,10 @@ input[type="checkbox"]:checked::before {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     width: -webkit-fill-available;
     margin-block: 16px 8px;
+}
+
+.sl-space {
+    cursor: pointer;
 }
 
 .sl-space-main {
