@@ -17,5 +17,5 @@ db.sqlite3
 
 #dev-ops
 volumes/
-.github/*
-.git/*
+.github/
+.git/
