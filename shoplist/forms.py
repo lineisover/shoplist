@@ -1,5 +1,7 @@
 from django import forms
+
 from .models import UserSpace
+
 
 class UserSpaceForm(forms.ModelForm):
     class Meta:
@@ -8,9 +10,9 @@ class UserSpaceForm(forms.ModelForm):
         widgets = {
             'name': forms.TextInput(attrs={
                 'placeholder': 'Название пространства',
-                'class': 'input-field'
-            })
+                'class': 'input-field',
+            }),
         }
         labels = {
-            'name': ''
+            'name': '',
         }

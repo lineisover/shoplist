@@ -13,7 +13,7 @@
     <div class="header-container">
         {% if request.user.is_authenticated %}
             <p>
-                Привет, {{ request.user.nick_name }} |
+                Привет, <a href="{% url 'account:profile' user.id %}">{{ request.user.nick_name }} </a> |
                 <form method="post" action="{% url 'logout' %}" style="display:inline;">
                     {% csrf_token %}
                     <button type="submit">Выйти</button>

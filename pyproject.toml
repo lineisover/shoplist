@@ -11,3 +11,19 @@ dependencies = [
     "psycopg[binary]>=3.3.2",
     "whitenoise>=6.11.0",
 ]
+
+[tool.ruff]
+line-length = 110
+indent-width = 4
+fix = true
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = ["D", "INP001", "RUF003", "ERA001",
+          "TRY003", "RUF002", "S311", "EXE002", "ANN",
+          "T201", "RUF012"]
+
+[tool.ruff.lint.flake8-quotes]
+docstring-quotes = "single"
+inline-quotes = "single"
+multiline-quotes = "double"

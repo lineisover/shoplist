@@ -10,9 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
-import environ
 from pathlib import Path
 
+import environ
 
 env = environ.Env()
 
@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'account',
-    'shoplist'
+    'shoplist',
 ]
 
 MIDDLEWARE = [
@@ -71,7 +71,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -92,8 +92,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': env.db(
         'DATABASE_URL',
-        default=f'sqlite:///{str(BASE_DIR / "db.sqlite3")}'
-    )
+        default=f'sqlite:///{BASE_DIR / "db.sqlite3"!s}',
+    ),
 }
 
 
@@ -132,8 +132,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / "staticfiles"
-
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 LOGIN_URL = '/accounts/login/'

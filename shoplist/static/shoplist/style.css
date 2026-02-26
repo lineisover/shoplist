@@ -316,6 +316,30 @@ button.delete-button:hover {
     background: #4CAF50; /* зелёный */
 }
 
+.profile-container{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.profile-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.profile-item b {
+    min-width: 100px;
+    color: #555;
+}
+
+.profile-item span:last-child {
+    color: #000;
+    font-weight: 500;
+}
+
 @media (max-width: 480px) {
     /* Контейнеры */
     .main-container, .header-container {
