@@ -8,7 +8,8 @@
     /* Glassmorphism элементы */
     --glass-bg: rgba(155, 89, 182, 0.15);    /* полупрозрачный лиловый фон */
     --glass-border: rgba(155, 89, 182, 0.3); /* полупрозрачная рамка */
-    
+    --border-color: #dadce0;
+
     /* Текст */
     --text-main: #2c1a3d;          /* темный фиолетовый для текста */
     --text-secondary: #7d5ba6;     /* мягкий фиолетовый для вторичного текста */
@@ -89,13 +90,13 @@ body {
     background-color: var(--primary-color);
     color: white;
     transition: all 0.2s ease;
-    box-shadow: 0 2px 4px rgba(26, 115, 232, 0.2);
+    box-shadow: 0 2px 4px var(--shadow);;
     max-width: max-content;
     align-self: baseline;
 }
 .sl-button:hover {
     background-color: var(--primary-dark);
-    box-shadow: 0 4px 8px rgba(26, 115, 232, 0.3);
+    box-shadow: 0 4px 8px var(--shadow);;
 }
 /* Кнопка удаления */
 .sl-button-delete {
@@ -175,7 +176,7 @@ li {
     justify-content: space-between;
     padding: 12px 16px;
     background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgb(127 127 127 / 30%);
+    border: 1px solid var(--glass-border);
     border-radius: 16px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     align-items: stretch;
@@ -196,7 +197,7 @@ li {
 .sl-input-text {
     padding: 12px 16px;
     border-radius: 12px;
-    border: 1px solid #dadce0;
+    border: 1px solid var(--border-color);
     background: rgba(255, 255, 255, 0.8);
     transition: border-color 0.2s;
     outline: none;
@@ -208,7 +209,7 @@ li {
 input[type="email"], input[type="password"], input[type="text"] {
     padding: 12px 16px;
     border-radius: 12px;
-    border: 1px solid #dadce0;
+    border: 1px solid var(--border-color);
     background: rgba(255, 255, 255, 0.8);
     transition: border-color 0.2s;
     outline: none;
@@ -222,7 +223,7 @@ input[type="checkbox"] {
     -webkit-appearance: none;
     width: 20px;
     height: 20px;
-    border: 2px solid #dadce0;
+    border: 2px solid var(--border-color);
     border-radius: 6px;
     background-color: #fff;
     cursor: pointer;
@@ -267,7 +268,7 @@ input[type="checkbox"]:checked::before {
     justify-content: space-between;
     padding: 12px 16px;
     background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgb(127 127 127 / 30%);
+    border: 1px solid var(--glass-border);;
     border-radius: 16px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     width: -webkit-fill-available;
@@ -360,7 +361,7 @@ input[type="checkbox"]:checked::before {
     flex-direction: row;
     /* width: 100%; */
     background-color: var(--primary-light);
-    box-shadow: 0 2px 4px rgba(26, 115, 232, 0.2);
+    box-shadow: 0 2px 4px var(--shadow);;
     border-radius: 16px;
     padding: 2px;
     margin: 4px;
@@ -415,12 +416,12 @@ li:not(.done) {
     color: white;
     font-weight: 500;
     z-index: 1000;
-    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    box-shadow: 0 12px 24px var(--shadow);;
     backdrop-filter: blur(8px);
     animation: slideIn 0.3s ease-out, fadeout 0.5s ease-out 3s forwards;
 }
-.sl-popup-error { background: rgba(217, 48, 37, 0.9); }
-.sl-popup-success { background: rgba(24, 128, 56, 0.9); }
+.sl-popup-error { background: var(--error-color); }
+.sl-popup-success { background: var(--success-color); }
 @keyframes slideIn {
     from { transform: translateX(100%); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
