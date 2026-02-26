@@ -4,7 +4,6 @@ __pycache__/
 build/
 dist/
 wheels/
-volumes/
 *.egg-info
 
 # Virtual environments
@@ -15,3 +14,8 @@ db.sqlite3
 
 #settings
 .env.local
+
+#dev-ops
+volumes/
+.github/*
+.git/*
