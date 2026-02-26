@@ -1,0 +1,12 @@
+<div id="profile-email">
+    <span>Электронная почта:</span>
+    <span>{{ user.email }}</span>
+    <button class="sl-button"
+        hx-get="{% url 'account:get_email_form' %}"
+        hx-target="#profile-email"
+        hx-swap="outerHTML">
+        Изменить
+    </button>
+</div>
+
+{% include "popup_message.html" %}

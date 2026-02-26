@@ -1,14 +1,5 @@
 <div class="sl-lists" id="shoppinglists-container">
     {% include "shoplist/partials/shoppinglists.html" %}
     {% include "shoplist/partials/add_list.html" %}
-    {% if error %}
-        <div id="popup-container" hx-swap-oob="afterbegin">
-            <div class="sl-popup-message sl-popup-error">{{ error }}</div>
-        </div>
-    {% endif %}
-    {% if success %}
-        <div id="popup-container" hx-swap-oob="afterbegin">
-            <div class="sl-popup-message sl-popup-success">{{ success }}</div>
-        </div>
-    {% endif %}
+    {% include "popup_message.html" %}
 </div>

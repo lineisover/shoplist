@@ -1,0 +1,20 @@
+<div id="profile-email">
+    <input class="sl-input" type="email" name="email" value={{ user.email }}>
+
+    <button class="sl-button"
+        hx-post="{% url 'account:change_email' %}" 
+        hx-include="input[name='email']"
+        hx-target="#profile-email"
+        hx-swap="outerHTML">
+        Сохранить
+    </button>
+
+    <button class="sl-button" 
+        hx-get="{% url 'account:get_email' %}"
+        hx-target="#profile-email"
+        hx-swap="outerHTML">
+        Отмена
+    </button>
+</div>
+
+{% include "popup_message.html" %}

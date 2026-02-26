@@ -1,4 +1,5 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.core.validators import validate_email
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
@@ -97,3 +98,21 @@ class User(AbstractBaseUser, PermissionsMixin):
         'Does the user have permissions to view the app `app_label`?'
         # Simplest possible answer: Yes, always
         return True
+
+    def change_email(self, new_email: str) -> tuple[bool, str]:
+        new_email = new_email.strip().lower()
+
+        if not new_email:
+            return False, (_('Email не может быть пустым'))
+
+        validate_email(new_email)
+
+        if type(self).objects.filter(email=new_email).exclude(pk=self.pk).exists():
+            return False, (_('Этот email уже используется'))
+
+        if new_email == self.email:
+            return False, (_('Этот email уже используется'))
+
+        self.email = new_email
+        self.save(update_fields=['email'])
+        return True, f'Новая электронная почта {self.email}'

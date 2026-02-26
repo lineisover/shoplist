@@ -2,15 +2,13 @@
 
 {% block content %}
 
-<div class="profile-container">
-    <div class="profile-item">
-        <span><b> Никнейм: </b></span>
+<div>
+    <div class="sl-h1">
         <span>{{ user.nick_name }}</span>
     </div>
-    <div class="profile-item">
-        <span><b> Email: </b></span>
-        <span>{{ user.email }}</span>
-    </div>
+    
+    {% include "account/partials/profile/email.html" %}
+
 </div>
 
 {% endblock %}

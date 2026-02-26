@@ -21,13 +21,4 @@
     </div>
     {% include 'shoplist/partials/users/add_user_block.html' %}
 </div>
-{% if error %}
-    <div id="popup-container" hx-swap-oob="afterbegin">
-        <div class="sl-popup-message sl-popup-error">{{ error }}</div>
-    </div>
-{% endif %}
-{% if success %}
-    <div id="popup-container" hx-swap-oob="afterbegin">
-        <div class="sl-popup-message sl-popup-success">{{ success }}</div>
-    </div>
-{% endif %}
+{% include "popup_message.html" %}
