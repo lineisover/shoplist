@@ -30,6 +30,9 @@
     /* Тень */
     --shadow-color: hsla(var(--h), 40%, 30%, 0.2);
     --shadow: 0 8px 32px 0 var(--shadow-color);
+
+    /* Borders */
+    --border-radius: 16px;
 }
 
 /* Общие сбросы */
@@ -37,6 +40,8 @@ body {
     font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
     /* Мягкий градиент на фоне для усиления эффекта стекла */
     background: radial-gradient(circle at top right, #e8f0fe, #ffffff);
@@ -49,10 +54,14 @@ body {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    width: 90%;
-    max-width: 550px;
-    margin: 24px auto 12px auto;
-    gap: 12px;
+    width: 100vw;
+    /* gap: 12px; */
+    background: var(--glass-bg);
+    border-bottom: 1px solid var(--glass-border);
+    border-radius: var(--border-radius);
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
 }
 
 /* Контейнер с контентом */
@@ -67,7 +76,7 @@ body {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--glass-border);
-    border-radius: 24px;
+    border-radius: var(--border-radius);
     box-shadow: var(--shadow);
 }
 
@@ -97,7 +106,7 @@ body {
     padding: 8px 16px;
     margin: 4px;
     border: none;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     background-color: var(--primary-color);
     color: white;
     transition: all 0.2s ease;
@@ -112,7 +121,7 @@ body {
 /* Кнопка удаления */
 .sl-button-delete {
     border: none;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     background-color: transparent;
     color: var(--error-color);
     border: 1px solid transparent;
@@ -188,7 +197,7 @@ li {
     padding: 12px 16px;
     background: rgba(255, 255, 255, 0.9);
     border: 1px solid var(--glass-border);
-    border-radius: 16px;
+    border-radius: var(--border-radius);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     align-items: stretch;
     margin-block: 8px;
@@ -207,7 +216,7 @@ li {
 }
 .sl-input-text {
     padding: 12px 16px;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
     background: rgba(255, 255, 255, 0.8);
     transition: border-color 0.2s;
@@ -219,7 +228,7 @@ li {
 }
 input[type="email"], input[type="password"], input[type="text"] {
     padding: 12px 16px;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
     background: rgba(255, 255, 255, 0.8);
     transition: border-color 0.2s;
@@ -235,7 +244,7 @@ input[type="checkbox"] {
     width: 20px;
     height: 20px;
     border: 2px solid var(--border-color);
-    border-radius: 6px;
+    border-radius: 8px;
     background-color: #fff;
     cursor: pointer;
     display: inline-grid;
@@ -280,7 +289,7 @@ input[type="checkbox"]:checked::before {
     padding: 12px 16px;
     background: rgba(255, 255, 255, 0.9);
     border: 1px solid var(--glass-border);;
-    border-radius: 16px;
+    border-radius: var(--border-radius);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     width: -webkit-fill-available;
     margin-block: 16px 8px;
@@ -332,7 +341,7 @@ input[type="checkbox"]:checked::before {
     background: var(--primary-light);
     color: var(--primary-dark);
     padding: 8px 16px;
-    border-radius: 20px;
+    border-radius: var(--border-radius);
     font-size: 0.85rem;
     font-weight: 500;
     display: inline-flex;
@@ -373,7 +382,7 @@ input[type="checkbox"]:checked::before {
     /* width: 100%; */
     background-color: var(--primary-light);
     box-shadow: 0 2px 4px var(--shadow);;
-    border-radius: 16px;
+    border-radius: var(--border-radius);
     padding: 2px;
     margin: 4px;
 }
@@ -426,7 +435,7 @@ li:not(.done) {
     margin-left: auto; /* к правому краю */
     pointer-events: auto; /* кликабельность самим плашкам */
     padding: 16px 24px;
-    border-radius: 16px;
+    border-radius: var(--border-radius);
     color: white;
     font-weight: 500;
     z-index: 1000;
@@ -454,9 +463,14 @@ li:not(.done) {
     }
 
     .sl-main {
-        width: 85%;
+        width: 100%;
+        box-sizing: border-box;
         padding: 16px 20px;
         margin-bottom: 20px;
+        margin-left: 0;
+        margin-right: 0;
+        border-radius: 0;
+        min-height: 100vh;
     }
 
     .sl-h1 {
