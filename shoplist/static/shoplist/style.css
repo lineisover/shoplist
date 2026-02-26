@@ -1,24 +1,35 @@
 /* Переменные для легкой настройки цветов одной гаммы */
 :root {
-    /* Основной фиолетовый тон */
-    --primary-color: #9b59b6;      /* насыщенный лиловый */
-    --primary-light: #eeddff;      /* светлый лавандовый для фонов */
-    --primary-dark: #6c3483;       /* темный фиолетовый для акцентов и hover */
+    /* Базовый тон (0-360) */
+    --h: 283;
     
-    /* Glassmorphism элементы */
-    --glass-bg: rgba(155, 89, 182, 0.15);    /* полупрозрачный лиловый фон */
-    --glass-border: rgba(155, 89, 182, 0.3); /* полупрозрачная рамка */
-    --border-color: #dadce0;
+    /* Основной цвет: насыщенный лиловый */
+    --primary-color: hsl(var(--h), 40%, 53%);
+    
+    /* Светлый лавандовый: высокая светлота, низкая насыщенность */
+    --primary-light: hsl(var(--h), 100%, 93%);
+    
+    /* Темный фиолетовый: низкая светлота */
+    --primary-dark: hsl(var(--h), 43%, 36%);
+
+    /* Glassmorphism: используем hsla для прозрачности */
+    --glass-bg: hsla(var(--h), 40%, 53%, 0.15);
+    --glass-border: hsla(var(--h), 40%, 53%, 0.3);
 
     /* Текст */
-    --text-main: #2c1a3d;          /* темный фиолетовый для текста */
-    --text-secondary: #7d5ba6;     /* мягкий фиолетовый для вторичного текста */
-    
-    /* Ошибки и успех — в рамках фиолетового оттенка */
-    --error-color: #e74c3c;        /* контрастная ошибка (красноватый) */
-    --success-color: #4abada;      /* светлый бирюзовый для успеха, гармонирует с фиолетовым */
-    
-    --shadow: 0 8px 32px 0 rgba(155, 89, 182, 0.2);
+    --text-main: hsl(var(--h), 40%, 17%);
+    --text-secondary: hsl(var(--h), 30%, 50%);
+
+    /* Попапы */
+    --error-color: hsl(343, 70%, 50%);
+    --success-color: hsl(143, 60%, 55%);
+
+    /* Границы */
+    --border-color: hsl(var(--h), 10%, 85%);
+
+    /* Тень */
+    --shadow-color: hsla(var(--h), 40%, 30%, 0.2);
+    --shadow: 0 8px 32px 0 var(--shadow-color);
 }
 
 /* Общие сбросы */
@@ -65,7 +76,7 @@ body {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    max-width: min-content;
+    justify-content: stretch;
 }
 .sl-item-form {
     display: flex;
@@ -380,10 +391,13 @@ input[type="checkbox"]:checked::before {
 
 /* Зачёркивание и перемещение вниз */
 .sl-item.done {
+    background-color: var(--glass-bg);
+    opacity: 0.8;
+}
+
+.sl-item-text.done {
     text-decoration: line-through;
     color: var(--primary-color);
-    background-color: #bebebebe;
-    opacity: 0.8;
 }
 
 li.done {
@@ -416,7 +430,7 @@ li:not(.done) {
     color: white;
     font-weight: 500;
     z-index: 1000;
-    box-shadow: 0 12px 24px var(--shadow);;
+    box-shadow: var(--shadow);;
     backdrop-filter: blur(8px);
     animation: slideIn 0.3s ease-out, fadeout 0.5s ease-out 3s forwards;
 }
