@@ -1,9 +1,11 @@
-<div class="sl-list" id="shoppinglists-{{ space.id }}">
-    {% for sl in shoppinglists %}
-        
-        {% include "shoplist/partials/lists/collapse_list.html" %}
+<div class="sl-beautiful-block">
+    <div class="sl-list-in-space" id="shoppinglists-{{ space.id }}">
+        {% for sl in shoppinglists %}
+            
+            {% include "shoplist/partials/lists/collapse_list.html" %}
 
-    {% empty %}
-        <div class="sl-h2">Списков пока нет.</div>
-    {% endfor %}
+        {% empty %}
+            <div class="sl-h2">Списков пока нет.</div>
+        {% endfor %}
+    </div>
 </div>

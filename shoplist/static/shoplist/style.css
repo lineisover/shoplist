@@ -48,7 +48,7 @@ body {
     width: 90%;
     max-width: 500px;
     margin: 0 auto 40px auto;
-    padding: 24px;
+    padding: 12px 28px;
     
     /* Эффект стекла */
     background: var(--glass-bg);
@@ -64,16 +64,21 @@ body {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
+    max-width: min-content;
+}
+.sl-item-form {
+    display: flex;
+    flex-wrap: nowrap;
 }
 
 /* Кнопки */
 .sl-button {
     font-family: inherit;
     font-weight: 500;
-    margin-inline-end: 8px;
-    margin-block: 8px;
+    margin-block: 4px;
     cursor: pointer;
     padding: 8px 16px;
+    margin: 4px;
     border: none;
     border-radius: 12px;
     background-color: var(--primary-color);
@@ -87,6 +92,8 @@ body {
 }
 /* Кнопка удаления */
 .sl-button-delete {
+    border: none;
+    border-radius: 12px;
     background-color: transparent;
     color: var(--error-color);
     border: 1px solid transparent;
@@ -110,11 +117,34 @@ body {
     font-weight: 500;
     margin: 0 0 8px 0;
 }
+.sl-h3 {
+    color: var(--primary-dark);
+    font-size: 1rem;
+}
 
 .sl-paragraph {
     margin-block: 4px;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0; 
+    margin: 0;
     display: flex;
-    flex-flow: column;
+    flex-direction: column;
+}
+
+li {
+    list-style-type: none;
+    padding: 0; 
+    margin: 0;
+    transition: all 0.3s ease;
+    font-size: 1rem;
 }
 
 .sl-li {
@@ -125,19 +155,31 @@ body {
     flex-direction: column;
 }
 
-.sl-block:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+.sl-simple-block {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 12px 16px;
+    width: -webkit-fill-available;
 }
-.sl-block.done {
-    text-decoration: line-through;
-    color: var(--text-secondary);
-    opacity: 0.7;
-    background: rgba(0, 0, 0, 0.02);
-    order: 1;
+.sl-beautiful-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgb(127 127 127 / 30%);
+    border-radius: 16px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    align-items: stretch;
+    margin-block: 8px;
 }
-.sl-block:not(.done) {
-    order: 0;
+
+.sl-row {
+    display: flex;
+    flex-direction: row;
+    /* margin-block-end: 8px; */
 }
 
 /* Инпуты */
@@ -166,15 +208,40 @@ input[type="email"], input[type="password"], input[type="text"] {
     outline: none;
     display: flex;
     width: -webkit-fill-available;
+    margin-block-end: 4px;
 }
 
-.sl-checkbox {
-    display: flex;
-    margin-block-start: 8px;
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
     width: 20px;
     height: 20px;
-    accent-color: var(--primary-color);
+    border: 2px solid #dadce0;
+    border-radius: 6px;
+    background-color: #fff;
     cursor: pointer;
+    display: inline-grid;
+    place-content: center;
+    transition: all 0.2s ease;
+}
+input[type="checkbox"]:hover {
+    border-color: var(--primary-color);
+}
+input[type="checkbox"]:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+input[type="checkbox"]::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    background-color: white;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
 }
 
 
@@ -184,11 +251,9 @@ input[type="email"], input[type="password"], input[type="text"] {
     display: flex;
     place-content: flex-end;
 }
-.sl-space-main {
-    padding: 8px;
-}
+
 /* Пространство */
-.sl-space {
+.sl-space, .sl-space-main {
     align-items: center;
     cursor: pointer;
     display: flex;
@@ -200,17 +265,33 @@ input[type="email"], input[type="password"], input[type="text"] {
     border-radius: 16px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     width: -webkit-fill-available;
-    margin-block: 8px;
+    margin-block: 16px 8px;
 }
+
+.sl-space-main {
+    align-items: flex-start;
+    margin-block: 8px
+}
+
+.sl-space:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+.sl-space.done {
+    text-decoration: line-through;
+    color: var(--text-secondary);
+    opacity: 0.7;
+    background: rgba(0, 0, 0, 0.02);
+    order: 1;
+}
+.sl-space:not(.done) {
+    order: 0;
+}
+
 .sl-space-info {
     display: flex;
     flex-direction: column;
     align-self: flex-start;
-}
-.sl-space-items {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 }
 /* пользователи пространства */
 .sl-users {
@@ -220,37 +301,58 @@ input[type="email"], input[type="password"], input[type="text"] {
 .sl-users-list {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 .sl-user-badge {
     background: var(--primary-light);
     color: var(--primary-dark);
-    padding: 2px 16px;
+    padding: 8px 16px;
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 500;
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    margin: 8px 18px 8px 0;
+    margin: 4px 8px 2px 0;
 }
 
 
 /* ====================== СПИСКИ внутри пространства ====================== */
 
 .sl-lists {
-    display: flex;
-    flex-direction: column;
+    width: -webkit-fill-available;
 }
+
 .sl-list {
     display: flex;
     flex-direction: column;
 }
 
+.sl-list-in-space {
+    padding: 0;
+    /* margin-block: 8px; */
+    /* display: flex; */
+    width: 100%;
+}
+
+.sl-space-items {
+    /* display: flex;
+    flex-direction: column; */
+    justify-content: space-between;
+    width: 100%;
+}
+
 .sl-item {
     display: flex;
     flex-direction: row;
-    width: 100%;
+    /* width: 100%; */
+    background-color: var(--primary-light);
+    box-shadow: 0 2px 4px rgba(26, 115, 232, 0.2);
+    border-radius: 16px;
+    padding: 2px;
+    margin: 4px;
 }
+
 .sl-item-content {
     display: flex;
     flex: auto;
@@ -259,9 +361,24 @@ input[type="email"], input[type="password"], input[type="text"] {
 }
 .sl-item-buttons {
     display: flex;
-    align-self: flex-end;
+    align-self: center;
 }
 
+/* Зачёркивание и перемещение вниз */
+.sl-item.done {
+    text-decoration: line-through;
+    color: var(--primary-color);
+    background-color: #bebebebe;
+    opacity: 0.8;
+}
+
+li.done {
+    order: 1;
+}
+
+li:not(.done) {
+    order: 0;
+}
 
 /* Попапы */
 .sl-popup-message {
@@ -286,4 +403,67 @@ input[type="email"], input[type="password"], input[type="text"] {
 @keyframes fadeout {
     from { opacity: 1; }
     to { opacity: 0; visibility: hidden; }
+}
+
+/* Медиа-запросы для мобильных устройств */
+@media (max-width: 600px) {
+    .sl-header {
+        width: 95%;
+        margin: 16px auto 8px auto;
+        justify-content: center;
+    }
+
+    .sl-main {
+        width: 85%;
+        padding: 16px 20px;
+        margin-bottom: 20px;
+    }
+
+    .sl-h1 {
+        font-size: 1.25rem;
+        text-align: center;
+    }
+
+    .sl-h2 {
+        font-size: 1.1rem;
+    }
+
+    .sl-item {
+        flex-direction: column;
+        padding: 8px;
+    }
+
+    .sl-item-content {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+
+    .sl-item-buttons {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .sl-button {
+        padding: 10px 14px; /* Увеличиваем область нажатия */
+        font-size: 0.9rem;
+    }
+
+    .sl-user-badge {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
+
+    input[type="email"], 
+    input[type="password"], 
+    input[type="text"] {
+        font-size: 16px; /* Предотвращает зум на iOS при фокусе */
+        padding: 10px;
+    }
+
+    .sl-popup-message {
+        left: 20px;
+        right: 20px;
+        top: 10px;
+        text-align: center;
+    }
 }

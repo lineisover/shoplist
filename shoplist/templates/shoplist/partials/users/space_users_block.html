@@ -1,5 +1,7 @@
 <div class="sl-users" id="space-users-block-{{ space.id }}">
-    Пользователи
+    <div class="sl-h3">
+        Пользователи:
+    </div>
     <div class="sl-users-list">
         {% for user in space.users.all %}
             <div class="sl-user-badge">
@@ -16,9 +18,8 @@
         {% empty %}
             Нет пользователей
         {% endfor %}
-
-        {% include 'shoplist/partials/users/add_user_block.html' %}
     </div>
+    {% include 'shoplist/partials/users/add_user_block.html' %}
     {% if error %}
         <div class=".sl-popup-message .sl-popup-error">{{ error }}</div>
     {% endif %}
