@@ -113,6 +113,7 @@ body {
     box-shadow: 0 2px 4px var(--shadow);;
     max-width: max-content;
     align-self: baseline;
+    user-select: none;
 }
 .sl-button:hover {
     background-color: var(--primary-dark);
@@ -126,6 +127,7 @@ body {
     color: var(--error-color);
     border: 1px solid transparent;
     box-shadow: none;
+    user-select: none;
 }
 .sl-button-delete:hover {
     background-color: rgba(217, 48, 37, 0.1);
