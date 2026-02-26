@@ -274,7 +274,7 @@ form {
     animation: slideIn 0.3s ease-out, fadeout 0.5s ease-out 3s forwards;
 }
 
-/* @keyframes slideIn {
+@keyframes slideIn {
     from { transform: translateX(100%); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
 }
@@ -282,7 +282,7 @@ form {
 @keyframes fadeout {
     from { opacity: 1; }
     to { opacity: 0; visibility: hidden; }
-} */
+}
 
 .error { background: rgba(217, 48, 37, 0.9); }
 .success { background: rgba(24, 128, 56, 0.9); }
