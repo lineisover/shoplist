@@ -68,7 +68,12 @@ body {
 }
 .sl-item-form {
     display: flex;
-    flex-wrap: nowrap;
+    /* flex-wrap: nowrap; */
+    /* flex-flow: wrap; */
+    flex-direction: row;
+    /* justify-content: flex-end; */
+    flex-wrap: wrap;
+    flex-flow: column;
 }
 
 /* Кнопки */
@@ -85,6 +90,8 @@ body {
     color: white;
     transition: all 0.2s ease;
     box-shadow: 0 2px 4px rgba(26, 115, 232, 0.2);
+    max-width: max-content;
+    align-self: baseline;
 }
 .sl-button:hover {
     background-color: var(--primary-dark);
@@ -271,6 +278,13 @@ input[type="checkbox"]:checked::before {
 .sl-space-main {
     align-items: flex-start;
     margin-block: 8px
+}
+
+.sl-space-main-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .sl-space:hover {

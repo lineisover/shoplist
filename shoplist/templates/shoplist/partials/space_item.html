@@ -1,10 +1,12 @@
 <div class="sl-space" id="space-{{ space.id }}"
     onclick="window.location.href='{% url 'shoplist:shoppinglist' space.id %}'">
     <div class="sl-space-info">
-        <div class="sl-h2">
-            {{ space.name }}
+        <div class="sl-sl-space-main-header">
+            <div class="sl-h2">
+                {{ space.name }}
+            </div>
+            {% include "shoplist/partials/delete_space_button.html" with in_list=True %}
         </div>
         {% include "shoplist/partials/space_users.html" %}
     </div>
-    {% include "shoplist/partials/delete_space_button.html" with in_list=True %}
 </div>
