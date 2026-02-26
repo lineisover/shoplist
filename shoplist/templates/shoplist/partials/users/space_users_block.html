@@ -1,33 +1,33 @@
-<div id="space-users-block-{{ space.id }}" class="users-section">
-    <span class="users-label">Пользователи:</span>
-
-    <div class="users-list">
+<div class="sl-users" id="space-users-block-{{ space.id }}">
+    <div class="sl-h3">
+        Пользователи:
+    </div>
+    <div class="sl-users-list">
         {% for user in space.users.all %}
-            <div class="user-item">
-                <span class="user-nick">{{ user.nick_name }}</span>
+            <div class="sl-user-badge">
+                {{ user.nick_name }}
                 <button 
-                    class="delete-button"
+                    class="sl-button-delete"
                     hx-delete="{% url 'shoplist:remove_user_from_space' space.id user.id %}"
                     hx-target="#space-users-block-{{ space.id }}"
                     hx-swap="outerHTML"
                     onclick="event.stopPropagation();">
-                    ×
+                    x
                 </button>
             </div>
         {% empty %}
-            <div class="no-users">Нет пользователей</div>
+            Нет пользователей
         {% endfor %}
-
-        {% include 'shoplist/partials/users/add_user_block.html' %}
-
     </div>
-
-    {% if error %}
-        <div class="popup-message error">{{ error }}</div>
-    {% endif %}
-
-    {% if success %}
-        <div class="popup-message success">{{ success }}</div>
-    {% endif %}
-
+    {% include 'shoplist/partials/users/add_user_block.html' %}
 </div>
+{% if error %}
+    <div id="popup-container" hx-swap-oob="afterbegin">
+        <div class="sl-popup-message sl-popup-error">{{ error }}</div>
+    </div>
+{% endif %}
+{% if success %}
+    <div id="popup-container" hx-swap-oob="afterbegin">
+        <div class="sl-popup-message sl-popup-success">{{ success }}</div>
+    </div>
+{% endif %}

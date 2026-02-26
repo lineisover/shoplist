@@ -1,10 +1,7 @@
-<li id="shoplist-{{ sl.id }}">
-    <div class="header-list">
-        <h2> {{ sl.name }} </h2>
-        
-        {% include "shoplist/partials/lists/header_buttons_exp.html" %}
-    </div>
-
+<div class="sl-li" id="shoplist-{{ sl.id }}">
+    <div class="sl-h2"> 
+        {{ sl.name }}
+    </div>  
+    {% include "shoplist/partials/lists/header_buttons_exp.html" %}
     {% include "shoplist/item_list.html" %}
-
-</li>
+</div>

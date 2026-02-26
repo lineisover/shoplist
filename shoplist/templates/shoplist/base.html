@@ -10,23 +10,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <div class="header-container">
+    <div class="sl-header">
         {% if request.user.is_authenticated %}
             <p>
-                Привет, <a href="{% url 'account:profile' user.id %}">{{ request.user.nick_name }} </a> |
+                Привет, <a href="{% url 'account:profile' user.id %}"> {{ request.user.nick_name }} </a>|
                 <form method="post" action="{% url 'logout' %}" style="display:inline;">
                     {% csrf_token %}
-                    <button type="submit">Выйти</button>
+                    <button class="sl-button" type="submit">Выйти</button>
                 </form>
-            </p>
+            </div>
         {% else %}
-            <p><a href="{% url 'login' %}">Войти</a></p>
+            <div class="sl-paragraph">
+                <form class="sl-form" method="post" action="{% url 'login' %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button class="sl-button" type="submit">Войти</button>
+                </form>
+            </div>
         {% endif %}
     </div>
     
-    <hr>
-    
-    <div class='main-container'>
+    <div class='sl-main'>
         {% block content %}
         {% endblock %}
     </div>
@@ -37,5 +40,6 @@
         });
     </script>
 
+    <div id="popup-container"></div>
 </body>
 </html>

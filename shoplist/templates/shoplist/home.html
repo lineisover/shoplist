@@ -1,15 +1,17 @@
 {% extends "shoplist/base.html" %}
 
 {% block content %}
-<h1> {{ title }}</h1>
+<div class="sl-h1"> {{ title }}</div>
 
-<ul id="spaces-list">
+<div id="spaces-list">
     {% for space in spaces %}
         {% include "shoplist/partials/space_item.html" %}
     {% empty %}
-        <li>У вас пока нет пространств.</li>
+        <div class="sl-space-main">
+            У вас пока нет пространств.
+        </div>
     {% endfor %}
-</ul>
+</div>
 
 {% include "shoplist/partials/space/new_space_block.html" %}
 

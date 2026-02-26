@@ -1,4 +1,4 @@
-<button hx-delete="{% url 'shoplist:delete_space' space.id %}" 
+<button class="sl-button sl-button-delete" hx-delete="{% url 'shoplist:delete_space' space.id %}" 
         {% if in_list %}
             hx-target="#space-{{ space.id }}" 
             hx-swap="outerHTML"

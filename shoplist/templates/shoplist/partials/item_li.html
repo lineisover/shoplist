@@ -1,25 +1,24 @@
 <li id="item-{{ item.id }}" class="{% if item.done %}done{% endif %}">
-    <div class="item-row">
-        <div class="item-content">
+    <div class="sl-item {% if item.done %}done{% endif %}">
+        <div class="sl-item-content">
             <input type="checkbox"
                    {% if item.done %}checked{% endif %}
                    hx-post="{% url 'shoplist:toggle_item' item.id %}"
                    hx-trigger="change"
                    hx-target="#item-{{ item.id }}"
                    hx-swap="outerHTML">
-
-            <span>
+            <div class="sl-item-text {% if item.done %}done{% endif %}">
                 {{ item.name }}
-            </span>
+            </div>
         </div>
 
-        <div class="item-buttons">
+        <div class="sl-item-buttons">
             <button 
-                class="delete-button"
+                class="sl-button-delete"
                 hx-delete="{% url 'shoplist:delete_item' sl.id item.id %}"
                 hx-target="#items-list-{{ sl.id }}"
                 hx-swap="outerHTML">
-                ×
+                x
             </button>
         </div>
     </div>

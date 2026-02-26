@@ -1,16 +1,24 @@
-<form 
+<form class="sl-form" 
     hx-post="{% url 'shoplist:add_user_to_space' space.id %}"
     hx-target="#space-users-block-{{ space.id }}"
     hx-swap="outerHTML"
-    class="add-user-form"
     onclick="event.stopPropagation();"
 >
-    <input type="email" name="email" placeholder="Email пользователя" required>
-    <button type="submit">Добавить</button>
+    <input class="sl-input"
+        type="email"
+        name="email"
+        placeholder="Email пользователя"
+        required
+    >
+    <button class="sl-button"
+        type="submit">
+            Добавить
+    </button>
 
-    <button hx-get="{% url 'shoplist:add_user_cancel' space.id %}"
-            hx-target=".add-user-block-{{ space.id }}"
-            hx-swap="innerHTML">
-        Отмена
+    <button class="sl-button"
+        hx-get="{% url 'shoplist:add_user_cancel' space.id %}"
+        hx-target=".add-user-block-{{ space.id }}"
+        hx-swap="innerHTML">
+            Отмена
     </button>
 </form>
