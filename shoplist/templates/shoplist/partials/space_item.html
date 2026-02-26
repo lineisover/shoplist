@@ -2,7 +2,7 @@
     onclick="window.location.href='{% url 'shoplist:shoppinglist' space.id %}'">
     <div class="sl-space-info">
         <div class="sl-space-main-header">
-            <div class="sl-h2">
+            <div class="sl-h1">
                 {{ space.name }}
             </div>
             {% include "shoplist/partials/delete_space_button.html" with in_list=True %}

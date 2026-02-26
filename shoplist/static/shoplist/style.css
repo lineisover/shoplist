@@ -304,7 +304,7 @@ input[type="checkbox"]:checked::before {
 .sl-space-info {
     display: flex;
     flex-direction: column;
-    align-self: flex-start;
+    align-self: stretch;
 }
 /* пользователи пространства */
 .sl-users {
