@@ -1,383 +1,331 @@
+/* Переменные для легкой настройки цветов одной гаммы */
+:root {
+    /* Основной фиолетовый тон */
+    --primary-color: #9b59b6;      /* насыщенный лиловый */
+    --primary-light: #f4f3f5;      /* светлый лавандовый для фонов */
+    --primary-dark: #6c3483;       /* темный фиолетовый для акцентов и hover */
+    
+    /* Glassmorphism элементы */
+    --glass-bg: rgba(155, 89, 182, 0.15);    /* полупрозрачный лиловый фон */
+    --glass-border: rgba(155, 89, 182, 0.3); /* полупрозрачная рамка */
+    
+    /* Текст */
+    --text-main: #2c1a3d;          /* темный фиолетовый для текста */
+    --text-secondary: #7d5ba6;     /* мягкий фиолетовый для вторичного текста */
+    
+    /* Ошибки и успех — в рамках фиолетового оттенка */
+    --error-color: #e74c3c;        /* контрастная ошибка (красноватый) */
+    --success-color: #8ae6ff;      /* светлый бирюзовый для успеха, гармонирует с фиолетовым */
+    
+    --shadow: 0 8px 32px 0 rgba(155, 89, 182, 0.2);
+}
+
 /* Общие сбросы */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
+    min-height: 100vh;
+    /* Мягкий градиент на фоне для усиления эффекта стекла */
+    background: radial-gradient(circle at top right, #e8f0fe, #ffffff);
+    color: var(--text-main);
+    line-height: 1.5;
 }
 
 /* Шапка */
 .header-container {
     display: flex;
-    justify-content: flex-end; /* элементы справа */
+    justify-content: flex-end;
     align-items: center;
     width: 90%;
-    max-width: 500px;   /* совпадает с контейнером контента */
-    margin: 20px auto 10px auto; /* сверху 20px, снизу 10px, центр по горизонтали */
-    gap: 10px;
+    max-width: 550px;
+    margin: 24px auto 12px auto;
+    gap: 12px;
 }
 
-.space-header {
-    display: flex;
-    justify-content: space-between; /* левая кнопка слева, правая справа */
-    align-items: center;
-}
-
-.header-list {
-    display: flex;
-    justify-content: space-between; /* левая кнопка слева, правая справа */
-    align-items: center;
-    margin-bottom: 16px;
-}
-
-.header-buttons {
-    display: flex;
-    flex-direction: column; /* кнопки в колонку */
-    gap: 8px; /* расстояние между кнопками */
-}
-
-.logout-form {
-    display: inline;
-}
-
-/* Контейнер с контентом (список) */
+/* Контейнер с контентом (Glassmorphism) */
 .main-container {
     width: 90%;
     max-width: 500px;
-    margin: 0 auto; /* центрируем */
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin: 0 auto 40px auto;
+    padding: 24px;
+    
+    /* Эффект стекла */
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+}
+
+.item-row {
+    display: flex;
+    width: 100%;
+}
+
+.item-content {
+    display: flex;
+    flex: auto;
+    align-self: center;
+    align-items: center;
+}
+
+p {
+    margin-block: 4px;
+    display: flex;
+    flex-flow: column;
+}
+
+/* Заголовки */
+h1 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--primary-dark);
+    margin: 0 0 16px 0;
+}
+
+h2 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin: 0 0 8px 0;
 }
 
 /* Список элементов */
 ul {
     list-style: none;
+    align-items: flex-start;
     padding: 0;
-    margin: 0;
+    margin-block: 8px;
     display: flex;
     flex-direction: column;
 }
 
 li {
-    align-items: center;
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    padding: 6px 15px;
-    margin-bottom: 10px;
-    background-color: #f1f1f1;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    font-size: 1rem;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgb(127 127 127 / 30%);
+    border-radius: 16px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: -webkit-fill-available;
+    margin-block: 8px;
 }
 
-li input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    accent-color: #1a73e8;
+li:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
-/* Зачёркивание и перемещение вниз */
+/* Состояние "Выполнено" */
 li.done {
     text-decoration: line-through;
-    color: gray;
-    order: 1;
-    background-color: #e0e0e0;
-    opacity: 0.8;
+    color: var(--text-secondary);
+    opacity: 0.7;
+    background: rgba(0, 0, 0, 0.02);
+    order: 1; /* Уходит вниз */
 }
 
 li:not(.done) {
     order: 0;
 }
 
+/* Чекбоксы в стиле Material */
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--primary-color);
+    cursor: pointer;
+}
+
+/* Кнопки */
+button {
+    font-family: inherit;
+    font-weight: 500;
+    margin-inline-end: 8px;
+    margin-block: 8px;
+    cursor: pointer;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 12px;
+    background-color: var(--primary-color);
+    color: white;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(26, 115, 232, 0.2);
+}
+
+button:hover {
+    background-color: var(--primary-dark);
+    box-shadow: 0 4px 8px rgba(26, 115, 232, 0.3);
+}
+
+span {
+    margin-left: 4px;
+}
+
 .space-page {
-    display: flex;
-    flex-direction: column;
-    gap: 0px;
+    padding: 8px;
 }
 
-.space-page-title {
-    padding: 10px;
+.space-header {
     display: flex;
-    flex-direction: column;
-}
-
-.space-page h1{
-    margin-bottom: 4px;
+    place-content: flex-end;
 }
 
 .space-info {
     display: flex;
-    flex-direction: column; /* элементы сверху вниз */
-    gap: 6px;               /* расстояние между названием и списком пользователей */
+    flex-direction: column;
+    align-self: flex-start;
+}
+/* Кнопка удаления (второстепенная, но заметная при наведении) */
+.delete-button {
+    background-color: transparent;
+    color: var(--error-color);
+    border: 1px solid transparent;
+    box-shadow: none;
 }
 
-.space-name {
-    font-size: 1.1rem;
-    font-weight: bold;
+.delete-button:hover {
+    background-color: rgba(217, 48, 37, 0.1);
+    color: var(--error-color);
+    box-shadow: none;
+}
+
+/* Бейджи пользователей */
+.user-badge, .user-item {
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    padding: 2px 0px 2px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-block: 2px 6px;
 }
 
 .users-section {
     display: flex;
     flex-direction: column;
-    gap: 4px;
 }
 
-.users-section-space {
+/* Поля ввода */
+
+input {
+    display: flex;
+    margin-block-start: 8px;
+}
+
+input[type="text"] {
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid #dadce0;
+    background: rgba(255, 255, 255, 0.8);
+    transition: border-color 0.2s;
+    outline: none;
+}
+
+input[type="text"]:focus {
+    border-color: var(--primary-color);
+    background: #fff;
+}
+
+input[type="email"] {
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid #dadce0;
+    background: rgba(255, 255, 255, 0.8);
+    transition: border-color 0.2s;
+    outline: none;
+}
+
+input[type="password"] {
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid #dadce0;
+    background: rgba(255, 255, 255, 0.8);
+    transition: border-color 0.2s;
+    outline: none;
+}
+
+form {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    margin-bottom: 16px
+    flex-wrap: nowrap;
 }
 
-.users-label {
-    font-size: 0.9rem;
-    font-weight: 500;
-}
 
-.users-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-}
 
-.user-badge {
-    background-color: #e0e0e0;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 0.85rem;
-}
-
-.no-users {
-    font-size: 0.85rem;
-    color: #888;
-}
-
-.user-item {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    gap: 6px;
-    padding: 4px 6px;
-    background-color: #e0e0e0;
-    border-radius: 4px;
-    font-size: 0.85rem;
-}
-
-.user-item .user-nick {
-    flex: 1; /* никнейм занимает оставшееся место */
-}
-
-.user-item .delete-button {
-    background-color: #e0e0e0;
-    color: red;
-    border: none;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    padding: 0;
-    font-size: 0.9rem;
-    line-height: 18px;
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.user-item .delete-button:hover {
-    background-color: darkred;/
-}
-
-.add-user-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem; /* расстояние между кнопкой и формой */
-}
-
-.show-add-user-btn {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    /* padding: 0.5rem 1rem; */
-    border-radius: 6px;
-    cursor: pointer;
-    width: fit-content;
-}
-
-.show-add-user-btn:hover {
-    background-color: #45a049;
-}
-
-.add-user-form {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-}
-
-.item-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.items-list li:hover {
-    background-color: #e0e0e0;
-    border-radius: 8px;
-}
-
-/* Левая часть */
-.item-content {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/* Правая часть */
-.item-buttons {
-    display: flex;
-    flex-direction: column;   /* В колонку */
-    gap: 6px;
-}
-
-.item-row .delete-button {
-    background-color: #e0e0e0;
-    color: red;
-    border: none;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    padding: 0;
-    font-size: 0.9rem;
-    line-height: 18px;
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.item-row .delete-button:hover {
-    background-color: darkred;/
-}
-
-/* Кнопки */
-button {
-    cursor: pointer;
-    padding: 4px 10px;
-    border: none;
-    background-color: #1a73e8;
-    color: white;
-    border-radius: 6px;
-    transition: background-color 0.2s ease;
-}
-
-button:hover {
-    background-color: #1558b0;
-}
-
-button.delete-button {
-    cursor: pointer;
-    padding: 4px 10px;
-    border: none;
-    background-color: red;
-    color: white;
-    border-radius: 6px;
-    transition: background-color 0.2s ease;
-}
-
-button.delete-button:hover {
-    background-color: darkred;  /* можно добавить эффект наведения */
-}
-
-/* Общий кейфрейм для исчезновения */
-@keyframes fadeout {
-    from { opacity: 1; }
-    to { opacity: 0; display: none; }
-}
-
-/* Общий стиль для попапов */
+/* Попапы (Уведомления) */
 .popup-message {
     position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 10px 15px;
-    border-radius: 5px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    top: 24px;
+    right: 24px;
+    padding: 16px 24px;
+    border-radius: 16px;
     color: white;
+    font-weight: 500;
     z-index: 1000;
-
-    animation: fadeout 0.5s ease-out 3s forwards; /* общая анимация */
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    backdrop-filter: blur(8px);
+    animation: slideIn 0.3s ease-out, fadeout 0.5s ease-out 3s forwards;
 }
 
-/* Ошибка */
-.error {
-    background: #f44336; /* красный */
+/* @keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
 }
 
-/* Успех */
-.success {
-    background: #4CAF50; /* зелёный */
-}
+@keyframes fadeout {
+    from { opacity: 1; }
+    to { opacity: 0; visibility: hidden; }
+} */
 
+.error { background: rgba(217, 48, 37, 0.9); }
+.success { background: rgba(24, 128, 56, 0.9); }
+
+/* Адаптивность для мобильных устройств */
 @media (max-width: 480px) {
-    /* Контейнеры */
-    .main-container, .header-container {
+    .main-container {
+        width: 88%;
+        padding: 20px;
+        border-radius: 0; /* На мобилках часто лучше выглядит во всю ширину */
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    .header-container {
         width: 95%;
-        padding: 15px;
+        justify-content: center;
     }
 
-    /* Список li разворачиваем вертикально */
+    .header-list {
+        display: inline-flex;
+    }
+
     li {
-        flex-direction: column; /* элементы внутри li вертикально */
-        align-items: stretch;   /* растягиваем на всю ширину */
-        padding: 12px;
-        font-size: 1rem; /* читаемый размер */
-        gap: 8px; /* расстояние между элементами */
+        display: flex;
+        padding: 16px;
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 12px;
     }
 
-    /* Название пространства / товара */
-    li span, li .item-name {
+    button {
+        width: 100%; /* Кнопки на мобильных удобнее делать большими */
+        padding: 14px;
+    }
+    
+    .item-buttons {
         width: 100%;
-        word-break: break-word; /* длинные слова переносятся */
-        display: block;
+        flex-direction: row !important;
+        gap: 8px;
     }
-
-    /* Чекбокс */
-    li input[type="checkbox"] {
-        width: 24px;
-        height: 24px;
-        margin-bottom: 8px;
-        flex-shrink: 0;
-    }
-
-    /* Кнопки растягиваем на всю ширину li */
-    li button {
-        width: 100%;
-        padding: 12px 0;
-        font-size: 1rem;
-        margin: 0; 
-    }
-
-    /* Кнопка удаления */
-    li button.delete-button {
-        background-color: red !important;
-        color: white !important;
-    }
-
-    li button.delete-button:hover {
-        background-color: darkred !important;
-    }
-
-    /* Форма создания пространства */
-    #new-space-block input[type="text"] {
-        width: 100%;
-        padding: 10px;
-        font-size: 1rem;
-        margin-bottom: 8px;
-        box-sizing: border-box;
-    }
-
-    #new-space-block button {
-        width: 100%;
-        padding: 12px 0;
-        font-size: 1rem;
+    
+    .item-buttons button {
+        flex: 1;
     }
 }
-
