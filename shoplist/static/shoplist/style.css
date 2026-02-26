@@ -394,10 +394,22 @@ li:not(.done) {
 }
 
 /* Попапы */
-.sl-popup-message {
+#popup-container {
     position: fixed;
     top: 24px;
     right: 24px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Расстояние между уведомлениями */
+    pointer-events: none; /* Чтобы контейнер не мешал кликам, если он пустой */
+}
+
+.sl-popup-message {
+    position: relative; /* no fixed! */
+    width: fit-content;
+    margin-left: auto; /* к правому краю */
+    pointer-events: auto; /* кликабельность самим плашкам */
     padding: 16px 24px;
     border-radius: 16px;
     color: white;

@@ -2,9 +2,13 @@
     {% include "shoplist/partials/shoppinglists.html" %}
     {% include "shoplist/partials/add_list.html" %}
     {% if error %}
-        <div class="sl-popup-message sl-popup-error">{{ error }}</div>
+        <div id="popup-container" hx-swap-oob="afterbegin">
+            <div class="sl-popup-message sl-popup-error">{{ error }}</div>
+        </div>
     {% endif %}
     {% if success %}
-        <div class="sl-popup-message sl-popup-success">{{ success }}</div>
+        <div id="popup-container" hx-swap-oob="afterbegin">
+            <div class="sl-popup-message sl-popup-success">{{ success }}</div>
+        </div>
     {% endif %}
 </div>
