@@ -462,9 +462,8 @@ li:not(.done) {
 /* Медиа-запросы для мобильных устройств */
 @media (max-width: 600px) {
     .sl-header {
-        width: 95%;
-        margin: 16px auto 8px auto;
-        justify-content: center;
+        display: flex;
+        width: 100%;
     }
 
     .sl-main {
