@@ -47,6 +47,7 @@ body {
     background: radial-gradient(circle at top right, #e8f0fe, #ffffff);
     color: var(--text-main);
     line-height: 1.5;
+    overflow-wrap: anywhere;
 }
 
 /* Шапка */
@@ -117,6 +118,7 @@ body {
     max-width: max-content;
     align-self: baseline;
     user-select: none;
+    overflow-wrap: break-word;
 }
 .sl-button:hover {
     background-color: var(--primary-dark);
@@ -255,6 +257,8 @@ input[type="checkbox"] {
     display: inline-grid;
     place-content: center;
     transition: all 0.2s ease;
+    min-width: 20px;
+    align-self: baseline;
 }
 input[type="checkbox"]:hover {
     border-color: var(--primary-color);
