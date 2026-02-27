@@ -28,7 +28,7 @@
     --border-color: hsl(var(--h), 10%, 85%);
 
     /* Тень */
-    --shadow-color: hsla(var(--h), 40%, 30%, 0.2);
+    --shadow-color: hsla(var(--h), 40%, 30%, 0.16);
     --shadow: 0 8px 32px 0 var(--shadow-color);
 
     /* Borders */
@@ -63,8 +63,8 @@ body {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--glass-border);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    box-shadow: 0 4px 16px 0 var(--shadow-color);
 }
 
 /* Контейнер с контентом */
