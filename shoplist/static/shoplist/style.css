@@ -54,7 +54,7 @@ body {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    width: 100vw;
+    width: 100%;
     /* gap: 12px; */
     background: var(--glass-bg);
     border-bottom: 1px solid var(--glass-border);
