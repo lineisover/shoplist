@@ -54,14 +54,17 @@ body {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    width: 100vw;
-    /* gap: 12px; */
-    background: var(--glass-bg);
-    border-bottom: 1px solid var(--glass-border);
-    border-radius: var(--border-radius);
+    width: 100%;
     padding: 8px;
     box-sizing: border-box;
     margin-bottom: 16px;
+    /* Эффект стекла */
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--glass-border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
 }
 
 /* Контейнер с контентом */
@@ -462,9 +465,8 @@ li:not(.done) {
 /* Медиа-запросы для мобильных устройств */
 @media (max-width: 600px) {
     .sl-header {
-        width: 95%;
-        margin: 16px auto 8px auto;
-        justify-content: center;
+        display: flex;
+        width: 100%;
     }
 
     .sl-main {
