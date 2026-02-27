@@ -118,6 +118,7 @@ body {
     max-width: max-content;
     align-self: baseline;
     user-select: none;
+    overflow-wrap: break-word;
 }
 .sl-button:hover {
     background-color: var(--primary-dark);
