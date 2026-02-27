@@ -255,6 +255,8 @@ input[type="checkbox"] {
     display: inline-grid;
     place-content: center;
     transition: all 0.2s ease;
+    min-width: 20px;
+    align-self: baseline;
 }
 input[type="checkbox"]:hover {
     border-color: var(--primary-color);
